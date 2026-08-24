@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Donors — Navy Wrestling Club</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy:#0a1f44; --navy-mid:#122757; --gold:#C5A028; --gold-lt:#e8c14a;
+    --white:#ffffff; --offwhite:#f5f6f8; --gray:#6b7280; --text:#1a1a2e; --border:#dde1e9;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family:'Source Sans 3',sans-serif; background:var(--offwhite); color:var(--text); line-height:1.6; -webkit-text-size-adjust:100%; }
+  .container { max-width:900px; margin:0 auto; padding:0 16px; }
+
+  /* NAV */
+  .nwc-nav { background:var(--navy); position:sticky; top:0; z-index:500; }
+  .nwc-nav-inner { max-width:1000px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:10px 16px; gap:16px; }
+  .nwc-logo { display:flex; align-items:center; gap:10px; text-decoration:none; flex-shrink:0; }
+  .nwc-logo img { height:38px; width:auto; display:block; }
+  .nwc-logo span { font-family:'Oswald',sans-serif; color:var(--white); font-size:13px; letter-spacing:1px; text-transform:uppercase; line-height:1.2; }
+  .nwc-links { display:flex; gap:4px; flex-wrap:wrap; justify-content:flex-end; }
+  .nwc-links a { font-family:'Oswald',sans-serif; font-size:13px; letter-spacing:1px; text-transform:uppercase; color:rgba(255,255,255,0.78); text-decoration:none; padding:8px 12px; border-radius:6px; transition:background 0.2s,color 0.2s; }
+  .nwc-links a:hover { background:rgba(255,255,255,0.08); color:var(--white); }
+  .nwc-links a.current { color:var(--gold); }
+  .nwc-links a.nav-donate { background:var(--gold); color:var(--navy); }
+  .nwc-links a.nav-donate:hover { background:var(--gold-lt); }
+  .nav-toggle { display:none; background:none; border:none; cursor:pointer; padding:6px; flex-shrink:0; -webkit-tap-highlight-color:transparent; }
+  .nav-toggle svg { width:26px; height:26px; stroke:var(--white); fill:none; stroke-width:2; stroke-linecap:round; }
+  @media (max-width:640px) {
+    .nav-toggle { display:block; }
+    .nwc-links { display:none; width:100%; flex-direction:column; gap:2px; padding-top:10px; justify-content:flex-start; }
+    .nwc-links.open { display:flex; }
+    .nwc-links a { width:100%; text-align:center; padding:13px; }
+  }
+
+  /* HERO */
+  .hero { background:linear-gradient(160deg,var(--navy) 0%,var(--navy-mid) 60%,#1a3a6e 100%); color:var(--white); padding:56px 20px 48px; text-align:center; position:relative; overflow:hidden; }
+  .hero::before { content:''; position:absolute; inset:0; background:repeating-linear-gradient(45deg,transparent,transparent 40px,rgba(197,160,40,0.04) 40px,rgba(197,160,40,0.04) 41px); pointer-events:none; }
+  .hero-eyebrow { font-family:'Oswald',sans-serif; font-size:12px; letter-spacing:3px; text-transform:uppercase; color:var(--gold); margin-bottom:14px; }
+  .hero h1 { font-family:'Oswald',sans-serif; font-size:clamp(32px,7vw,56px); font-weight:700; line-height:1.05; letter-spacing:-0.5px; margin-bottom:16px; text-transform:uppercase; }
+  .hero h1 span { color:var(--gold); }
+  .hero-sub { font-size:clamp(15px,3.5vw,18px); color:rgba(255,255,255,0.85); max-width:600px; margin:0 auto; }
+
+  /* SECTION */
+  .section { padding:52px 16px; }
+  .section-label { font-family:'Oswald',sans-serif; font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--gold); margin-bottom:6px; }
+  .section-title { font-family:'Oswald',sans-serif; font-size:clamp(24px,5vw,36px); font-weight:700; color:var(--navy); text-transform:uppercase; line-height:1.1; margin-bottom:14px; }
+  .section-body { color:var(--gray); font-size:15px; max-width:680px; }
+
+  /* DONOR TIERS */
+  .tier-list { margin-top:28px; display:flex; flex-direction:column; gap:22px; }
+  .tier-card { background:var(--white); border:1px solid var(--border); border-radius:14px; padding:24px 26px; }
+  .tier-card .tier-amt { font-family:'Oswald',sans-serif; font-size:20px; font-weight:700; color:var(--navy); letter-spacing:0.5px; margin-bottom:10px; }
+  .tier-card .tier-amt span { color:var(--gold); }
+  .tier-card p.tier-names { font-size:14.5px; color:var(--gray); line-height:1.7; }
+  .tier-card p.tier-empty { font-size:13.5px; color:var(--gray); font-style:italic; }
+
+  /* QUOTE */
+  .quote-section { background:var(--navy); color:var(--white); padding:56px 20px; text-align:center; }
+  .quote-mark { font-family:'Oswald',sans-serif; font-size:72px; color:var(--gold); line-height:0.5; display:block; margin-bottom:22px; }
+  .quote-text { font-size:clamp(16px,3.5vw,24px); font-style:italic; max-width:640px; margin:0 auto 20px; line-height:1.5; color:rgba(255,255,255,0.9); }
+  .quote-attr { font-family:'Oswald',sans-serif; font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--gold); }
+
+  /* FINAL CTA */
+  .final-cta { background:linear-gradient(135deg,var(--gold) 0%,#d4aa2e 100%); padding:56px 20px; text-align:center; }
+  .final-cta h2 { font-family:'Oswald',sans-serif; font-size:clamp(26px,6vw,44px); text-transform:uppercase; color:var(--navy); margin-bottom:10px; }
+  .final-cta p { color:rgba(10,31,68,0.75); font-size:16px; margin-bottom:28px; }
+  .cta-btns { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+  .btn-primary { padding:14px 32px; background:var(--navy); color:var(--white); border:none; border-radius:8px; font-family:'Oswald',sans-serif; font-size:15px; letter-spacing:2px; text-transform:uppercase; cursor:pointer; transition:opacity 0.2s; text-decoration:none; display:inline-block; min-height:48px; line-height:20px; }
+  .btn-primary:hover { opacity:0.88; }
+  .btn-secondary { padding:12px 28px; background:none; color:var(--navy); border:2px solid var(--navy); border-radius:8px; font-family:'Oswald',sans-serif; font-size:15px; letter-spacing:2px; text-transform:uppercase; cursor:pointer; transition:background 0.2s,color 0.2s; text-decoration:none; display:inline-block; min-height:48px; line-height:24px; }
+  .btn-secondary:hover { background:var(--navy); color:var(--white); }
+
+  /* FOOTER */
+  .site-footer { background:var(--navy); color:rgba(255,255,255,0.7); padding:36px 16px 24px; }
+  .footer-inner { max-width:900px; margin:0 auto; display:flex; flex-wrap:wrap; justify-content:space-between; gap:24px; }
+  .footer-col h5 { font-family:'Oswald',sans-serif; font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--gold); margin-bottom:10px; }
+  .footer-col a { display:block; color:rgba(255,255,255,0.7); text-decoration:none; font-size:14px; margin-bottom:6px; }
+  .footer-col a:hover { color:var(--white); }
+  .footer-social { display:flex; gap:12px; margin-top:6px; }
+  .footer-social a { width:34px; height:34px; border-radius:50%; background:rgba(255,255,255,0.08); display:flex; align-items:center; justify-content:center; }
+  .footer-social svg { width:16px; height:16px; stroke:var(--white); fill:none; stroke-width:1.8; }
+  .footer-note { text-align:center; padding-top:24px; margin-top:24px; border-top:1px solid rgba(255,255,255,0.12); font-size:12px; color:rgba(255,255,255,0.5); }
+
+  @media (max-width:480px) {
+    .cta-btns { flex-direction:column; align-items:stretch; }
+    .btn-primary, .btn-secondary { width:100%; text-align:center; }
+    .tier-card { padding:20px 18px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav class="nwc-nav">
+  <div class="nwc-nav-inner">
+    <a class="nwc-logo" href="home.html">
+      <img src="https://www.navywrestlingclub.com/uploads/1/4/7/2/147221784/nwclogo.png" alt="Navy Wrestling Club logo"/>
+      <span>Navy Wrestling<br>Club</span>
+    </a>
+        <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" onclick="var l=document.getElementById('nwcLinks'); var open=l.classList.toggle('open'); this.setAttribute('aria-expanded', open);">
+      <svg viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+    <div class="nwc-links" id="nwcLinks">
+      <a href="about.html">About</a>
+      <a href="club-info.html">Club</a>
+      <a href="updates.html">Updates</a>
+      <a href="donors.html" class="current">Donors</a>
+      <a href="contact.html">Contact</a>
+      <a href="https://schmee-com.myshopify.com/collections/navy-wrestling" target="_blank" rel="noopener">Shop</a>
+      <a href="donate.html" class="nav-donate">Donate</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <p class="hero-eyebrow">Navy Wrestling Club · Donor Recognition</p>
+  <h1>Thank You, <span>2026 Donors</span></h1>
+  <p class="hero-sub">Every gift listed here funds coaching, travel, and training for Navy's Midshipmen wrestlers. We're grateful for every level of support.</p>
+</section>
+
+<!-- ═══ DONOR TIERS ═══ -->
+<section class="section">
+  <div class="container">
+    <p class="section-label">2025 Giving</p>
+    <h2 class="section-title">Donor Honor Roll</h2>
+    <p class="section-body">We're proud to recognize every donor who made 2025 the Club's strongest fundraising year yet.</p>
+
+    <!-- DONOR TIERS: copy/edit a .tier-card to add a name or update giving levels for a new year. -->
+    <div class="tier-list">
+      <div class="tier-card">
+        <p class="tier-amt"><span>$500,000+</span></p>
+        <p class="tier-empty">No donors at this level yet — be the first.</p>
+      </div>
+      <div class="tier-card">
+        <p class="tier-amt"><span>$50,000+</span></p>
+        <p class="tier-names">Dr. Ernst Volgenau &middot; Mr. Stephen Leaman</p>
+      </div>
+      <div class="tier-card">
+        <p class="tier-amt"><span>$5,000+</span></p>
+        <p class="tier-names">Glenn Allen &middot; Dale Stahl &middot; John Sattler &middot; Thomas Jones</p>
+      </div>
+      <div class="tier-card">
+        <p class="tier-amt"><span>$1,000+</span></p>
+        <p class="tier-names">Michael Barikian &middot; Nick Mygas &middot; Peter VanDerlofske &middot; Brian Forster &middot; James Letchford &middot; Cody Solari &middot; Chad Teasdale &middot; Dustin Haislip &middot; Michael Rathburn &middot; Gary Sandala &middot; James Buchli &middot; Sam Dutro &middot; Dominic Ewers &middot; Herb Frerichs &middot; Greg Gingeleskie &middot; Zach Johnson &middot; Michael Weiner &middot; Greg Wise &middot; Jay Antonelli &middot; Mason Bailey &middot; Brent Blackmer &middot; Joshua Jabin &middot; Larry Kihistadius &middot; Cary Kolat &middot; Collin Leadbeter &middot; Matt Treaster &middot; Michael Simon &middot; Michael Maynard &middot; Heckman Family &middot; Dominick Oddo &middot; Christian Filipos &middot; Tom Gutierrez &middot; Carolyn Leadbeter &middot; Sean Donnelly &middot; Robert Neil &middot; Edward Bannet &middot; Hank Park &middot; Ivan Salaverry &middot; Craig Reiner &middot; Rob Boblits &middot; Michael Collins &middot; Haley Comer-Williams &middot; Ken Graber &middot; Andrew Everitt &middot; Christopher Reece &middot; Martie Milliken &middot; Timothy Szymanski &middot; Lanosga Family &middot; Greg Futch &middot; Ferretti Family &middot; Wask Family</p>
+      </div>
+      <div class="tier-card">
+        <p class="tier-amt"><span>$500+</span></p>
+        <p class="tier-names">Major Curtis Smith &middot; Jonathan Sanchez &middot; Ryan Harman &middot; Binni Family &middot; Farabaugh Family &middot; Heflin Family &middot; Vafiadis Family &middot; Jadaen Bernstein &middot; John Campbell &middot; Koderhandt Family &middot; Chris Midgett &middot; Logan Treaster &middot; Brian Berryman &middot; Evan Boblits &middot; John Christensen &middot; John T. Foust &middot; Aaron Fuller &middot; Reedy Family &middot; John Sparaco &middot; Adam Tolk &middot; Amanda Kent &middot; Mary Lewis &middot; John Bever &middot; Andrew Joseph &middot; Nick Melfi &middot; John Lemmon &middot; Thomas Bruscino &middot; Mark Evans &middot; Lloyd Keaser &middot; Gregory Collins &middot; Jennifer Iaquinto &middot; John Kokish &middot; Kenneth Hood &middot; Paul Shemella &middot; Michael Harnett &middot; Kurt Kyle &middot; John Ahern</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ QUOTE ═══ -->
+<section class="quote-section">
+  <span class="quote-mark">"</span>
+  <p class="quote-text">Every dollar donated goes directly back into the program — there is no overhead layer between donors and Midshipmen.</p>
+  <p class="quote-attr">Navy Wrestling Club Board</p>
+</section>
+
+<!-- ═══ FINAL CTA ═══ -->
+<section class="final-cta">
+  <div class="container">
+    <h2>Join This List</h2>
+    <p>See your name here next year — every gift, at every level, funds the program directly.</p>
+    <div class="cta-btns">
+      <a class="btn-primary" href="donate.html">Donate Now</a>
+      <a class="btn-secondary" href="about.html">See Our Mission</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-col">
+      <h5>Navy Wrestling Club</h5>
+      <a href="home.html">Home</a>
+      <a href="about.html">About Us</a>
+      <a href="club-info.html">Club Info</a>
+      <a href="updates.html">Updates</a>
+      <a href="donors.html">Donors</a>
+      <a href="donate.html">Donate</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h5>More</h5>
+      <a href="newsletter.html">Join Our Newsletter</a>
+      <a href="https://schmee-com.myshopify.com/collections/navy-wrestling" target="_blank" rel="noopener">Shop Navy Wrestling</a>
+      <a href="https://www.navywrestlingclub.com/photo-archive.html" target="_blank" rel="noopener">Photo Archive</a>
+      <a href="https://www.navywrestlingclub.com/archive.html" target="_blank" rel="noopener">Video Archive</a>
+    </div>
+    <div class="footer-col">
+      <h5>Connect</h5>
+      <div class="footer-social">
+        <a href="https://www.facebook.com/NavyWC" aria-label="Facebook" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+        <a href="https://twitter.com/NavyWC" aria-label="X / Twitter" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M4 4l16 16M20 4L4 20"/></svg></a>
+        <a href="https://www.instagram.com/navywrestlingclub/" aria-label="Instagram" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+      </div>
+    </div>
+  </div>
+  <p class="footer-note">The Navy Wrestling Club is a 501(c)(3) nonprofit organization. Contributions are tax-deductible to the extent permitted by law.</p>
+</footer>
+
+</body>
+</html>

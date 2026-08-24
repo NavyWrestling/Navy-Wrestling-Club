@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Contact — Navy Wrestling Club</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy:#0a1f44; --navy-mid:#122757; --gold:#C5A028; --gold-lt:#e8c14a;
+    --white:#ffffff; --offwhite:#f5f6f8; --gray:#6b7280; --text:#1a1a2e; --border:#dde1e9;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family:'Source Sans 3',sans-serif; background:var(--offwhite); color:var(--text); line-height:1.6; -webkit-text-size-adjust:100%; }
+  .container { max-width:900px; margin:0 auto; padding:0 16px; }
+
+  /* NAV */
+  .nwc-nav { background:var(--navy); position:sticky; top:0; z-index:500; }
+  .nwc-nav-inner { max-width:1000px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:10px 16px; gap:16px; }
+  .nwc-logo { display:flex; align-items:center; gap:10px; text-decoration:none; flex-shrink:0; }
+  .nwc-logo img { height:38px; width:auto; display:block; }
+  .nwc-logo span { font-family:'Oswald',sans-serif; color:var(--white); font-size:13px; letter-spacing:1px; text-transform:uppercase; line-height:1.2; }
+  .nwc-links { display:flex; gap:4px; flex-wrap:wrap; justify-content:flex-end; }
+  .nwc-links a { font-family:'Oswald',sans-serif; font-size:13px; letter-spacing:1px; text-transform:uppercase; color:rgba(255,255,255,0.78); text-decoration:none; padding:8px 12px; border-radius:6px; transition:background 0.2s,color 0.2s; }
+  .nwc-links a:hover { background:rgba(255,255,255,0.08); color:var(--white); }
+  .nwc-links a.current { color:var(--gold); }
+  .nwc-links a.nav-donate { background:var(--gold); color:var(--navy); }
+  .nwc-links a.nav-donate:hover { background:var(--gold-lt); }
+  .nav-toggle { display:none; background:none; border:none; cursor:pointer; padding:6px; flex-shrink:0; -webkit-tap-highlight-color:transparent; }
+  .nav-toggle svg { width:26px; height:26px; stroke:var(--white); fill:none; stroke-width:2; stroke-linecap:round; }
+  @media (max-width:640px) {
+    .nav-toggle { display:block; }
+    .nwc-links { display:none; width:100%; flex-direction:column; gap:2px; padding-top:10px; justify-content:flex-start; }
+    .nwc-links.open { display:flex; }
+    .nwc-links a { width:100%; text-align:center; padding:13px; }
+  }
+
+  /* HERO */
+  .hero { background:linear-gradient(160deg,var(--navy) 0%,var(--navy-mid) 60%,#1a3a6e 100%); color:var(--white); padding:56px 20px 48px; text-align:center; position:relative; overflow:hidden; }
+  .hero::before { content:''; position:absolute; inset:0; background:repeating-linear-gradient(45deg,transparent,transparent 40px,rgba(197,160,40,0.04) 40px,rgba(197,160,40,0.04) 41px); pointer-events:none; }
+  .hero-eyebrow { font-family:'Oswald',sans-serif; font-size:12px; letter-spacing:3px; text-transform:uppercase; color:var(--gold); margin-bottom:14px; }
+  .hero h1 { font-family:'Oswald',sans-serif; font-size:clamp(32px,7vw,56px); font-weight:700; line-height:1.05; letter-spacing:-0.5px; margin-bottom:16px; text-transform:uppercase; }
+  .hero h1 span { color:var(--gold); }
+  .hero-sub { font-size:clamp(15px,3.5vw,18px); color:rgba(255,255,255,0.85); max-width:560px; margin:0 auto; }
+
+  /* SECTION */
+  .section { padding:52px 16px; }
+  .section-label { font-family:'Oswald',sans-serif; font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--gold); margin-bottom:6px; }
+  .section-title { font-family:'Oswald',sans-serif; font-size:clamp(24px,5vw,32px); font-weight:700; color:var(--navy); text-transform:uppercase; line-height:1.1; margin-bottom:14px; }
+  .section-body { color:var(--gray); font-size:15px; max-width:560px; }
+
+  /* CONTACT LAYOUT */
+  .contact-grid { display:grid; grid-template-columns:1.2fr 1fr; gap:32px; margin-top:8px; align-items:start; }
+
+  /* FORM CARD
+     Note for Katherine: this is a static HTML form that opens
+     the visitor's email client with the message pre-filled
+     (via a mailto: action) — it works with no backend, which is
+     ideal for a Weebly Embed Code block. If you'd rather collect
+     submissions directly (e.g. into a spreadsheet or inbox without
+     opening the visitor's email app), swap this card out for
+     Weebly's native "Contact Form" element instead — drag it in
+     from the Weebly editor's Form section on this page. */
+  .form-card { background:var(--white); border:1px solid var(--border); border-radius:14px; padding:28px 26px; }
+  .field { margin-bottom: 16px; }
+  .field label { display:block; font-size:13px; font-weight:600; color:var(--navy); margin-bottom:6px; }
+  .field input, .field textarea {
+    width:100%; padding:12px 13px; border:2px solid var(--border); border-radius:8px;
+    font-family:'Source Sans 3',sans-serif; font-size:16px; color:var(--text);
+    outline:none; transition:border-color 0.2s; background:var(--white); resize:vertical;
+  }
+  .field input:focus, .field textarea:focus { border-color:var(--navy); }
+  .field-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  .checkbox-row { display:flex; align-items:flex-start; gap:10px; margin-bottom:18px; }
+  .checkbox-row input { margin-top:3px; width:16px; height:16px; flex-shrink:0; }
+  .checkbox-row label { font-size:13px; color:var(--gray); }
+  .form-submit {
+    width:100%; padding:14px; background:var(--navy); color:var(--white); border:none;
+    border-radius:8px; font-family:'Oswald',sans-serif; font-size:15px; letter-spacing:2px;
+    text-transform:uppercase; cursor:pointer; transition:opacity 0.2s; min-height:48px;
+  }
+  .form-submit:hover { opacity:0.88; }
+
+  /* SIDE INFO CARD */
+  .info-card { background:var(--navy); color:var(--white); border-radius:14px; padding:28px 26px; }
+  .info-card h4 { font-family:'Oswald',sans-serif; font-size:13px; letter-spacing:2px; text-transform:uppercase; color:var(--gold); margin-bottom:8px; }
+  .info-card p { font-size:14px; color:rgba(255,255,255,0.78); margin-bottom:20px; }
+  .info-card p:last-of-type { margin-bottom:0; }
+  .info-social { display:flex; gap:12px; margin-top:6px; }
+  .info-social a { width:38px; height:38px; border-radius:50%; background:rgba(255,255,255,0.1); display:flex; align-items:center; justify-content:center; transition:background 0.2s; }
+  .info-social a:hover { background:rgba(255,255,255,0.2); }
+  .info-social svg { width:17px; height:17px; stroke:var(--white); fill:none; stroke-width:1.8; }
+
+  /* NEWSLETTER
+     Note for Katherine: this is a custom look-alike capture form
+     (not an embed of the old site) — the visitor enters just their
+     email, and the button carries it as a URL parameter over to
+     newsletter.html, which has the full sign-up form (name,
+     affiliation, address, etc.) with that email pre-filled. */
+  .newsletter-card { background:var(--navy); border-radius:14px; padding:36px 30px; text-align:center; }
+  .newsletter-card h2 { color:var(--white); }
+  .newsletter-card .section-label { color:var(--gold); }
+  .newsletter-card .section-body { color:rgba(255,255,255,0.78); margin:0 auto 22px; }
+  .newsletter-form { display:flex; gap:10px; max-width:440px; margin:0 auto; flex-wrap:wrap; }
+  .newsletter-form input { flex:1; min-width:200px; padding:13px 14px; border:2px solid rgba(255,255,255,0.25); border-radius:8px; font-family:'Source Sans 3',sans-serif; font-size:16px; background:rgba(255,255,255,0.08); color:var(--white); outline:none; }
+  .newsletter-form input::placeholder { color:rgba(255,255,255,0.55); }
+  .newsletter-form input:focus { border-color:var(--gold); }
+  .newsletter-form button { padding:13px 26px; background:var(--gold); color:var(--navy); border:none; border-radius:8px; font-family:'Oswald',sans-serif; font-size:14px; letter-spacing:2px; text-transform:uppercase; cursor:pointer; transition:background 0.2s; white-space:nowrap; }
+  .newsletter-form button:hover { background:var(--gold-lt); }
+  @media (max-width:480px) { .newsletter-form { flex-direction:column; } .newsletter-form button { width:100%; } }
+
+  /* FINAL CTA */
+  .final-cta { background:linear-gradient(135deg,var(--gold) 0%,#d4aa2e 100%); padding:56px 20px; text-align:center; }
+  .final-cta h2 { font-family:'Oswald',sans-serif; font-size:clamp(26px,6vw,44px); text-transform:uppercase; color:var(--navy); margin-bottom:10px; }
+  .final-cta p { color:rgba(10,31,68,0.75); font-size:16px; margin-bottom:28px; }
+  .cta-btns { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+  .btn-primary { padding:14px 32px; background:var(--navy); color:var(--white); border:none; border-radius:8px; font-family:'Oswald',sans-serif; font-size:15px; letter-spacing:2px; text-transform:uppercase; cursor:pointer; transition:opacity 0.2s; text-decoration:none; display:inline-block; min-height:48px; line-height:20px; }
+  .btn-primary:hover { opacity:0.88; }
+  .btn-secondary { padding:12px 28px; background:none; color:var(--navy); border:2px solid var(--navy); border-radius:8px; font-family:'Oswald',sans-serif; font-size:15px; letter-spacing:2px; text-transform:uppercase; cursor:pointer; transition:background 0.2s,color 0.2s; text-decoration:none; display:inline-block; min-height:48px; line-height:24px; }
+  .btn-secondary:hover { background:var(--navy); color:var(--white); }
+
+  /* FOOTER */
+  .site-footer { background:var(--navy); color:rgba(255,255,255,0.7); padding:36px 16px 24px; }
+  .footer-inner { max-width:900px; margin:0 auto; display:flex; flex-wrap:wrap; justify-content:space-between; gap:24px; }
+  .footer-col h5 { font-family:'Oswald',sans-serif; font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--gold); margin-bottom:10px; }
+  .footer-col a { display:block; color:rgba(255,255,255,0.7); text-decoration:none; font-size:14px; margin-bottom:6px; }
+  .footer-col a:hover { color:var(--white); }
+  .footer-social { display:flex; gap:12px; margin-top:6px; }
+  .footer-social a { width:34px; height:34px; border-radius:50%; background:rgba(255,255,255,0.08); display:flex; align-items:center; justify-content:center; }
+  .footer-social svg { width:16px; height:16px; stroke:var(--white); fill:none; stroke-width:1.8; }
+  .footer-note { text-align:center; padding-top:24px; margin-top:24px; border-top:1px solid rgba(255,255,255,0.12); font-size:12px; color:rgba(255,255,255,0.5); }
+
+  @media (max-width:720px) {
+    .contact-grid { grid-template-columns:1fr; }
+  }
+  @media (max-width:480px) {
+    .field-row { grid-template-columns:1fr; }
+    .cta-btns { flex-direction:column; align-items:stretch; }
+    .btn-primary, .btn-secondary { width:100%; text-align:center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav class="nwc-nav">
+  <div class="nwc-nav-inner">
+    <a class="nwc-logo" href="home.html">
+      <img src="https://www.navywrestlingclub.com/uploads/1/4/7/2/147221784/nwclogo.png" alt="Navy Wrestling Club logo"/>
+      <span>Navy Wrestling<br>Club</span>
+    </a>
+        <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" onclick="var l=document.getElementById('nwcLinks'); var open=l.classList.toggle('open'); this.setAttribute('aria-expanded', open);">
+      <svg viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+    <div class="nwc-links" id="nwcLinks">
+      <a href="about.html">About</a>
+      <a href="club-info.html">Club</a>
+      <a href="updates.html">Updates</a>
+      <a href="donors.html">Donors</a>
+      <a href="contact.html" class="current">Contact</a>
+      <a href="https://schmee-com.myshopify.com/collections/navy-wrestling" target="_blank" rel="noopener">Shop</a>
+      <a href="donate.html" class="nav-donate">Donate</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <p class="hero-eyebrow">Navy Wrestling Club</p>
+  <h1>Get in <span>Touch</span></h1>
+  <p class="hero-sub">Questions about donating, joining the mailing list, or getting involved with the Club? We'd love to hear from you.</p>
+</section>
+
+<!-- ═══ CONTACT ═══ -->
+<section class="section">
+  <div class="container">
+    <p class="section-label">Contact Us</p>
+    <h2 class="section-title">Send Us a Message</h2>
+    <p class="section-body">Fill out the form below and we'll get back to you as soon as we can — or reach us directly on social media.</p>
+
+    <div class="contact-grid">
+      <div class="form-card">
+        <!-- Static mailto form: replace REPLACE_WITH_EMAIL with the
+             Club's real inbox address. For a no-email-client-popup
+             experience, swap this card for Weebly's native Form element. -->
+        <form action="mailto:REPLACE_WITH_EMAIL@navywrestlingclub.com" method="post" enctype="text/plain">
+          <div class="field-row">
+            <div class="field">
+              <label>First Name *</label>
+              <input type="text" name="First Name" required/>
+            </div>
+            <div class="field">
+              <label>Last Name *</label>
+              <input type="text" name="Last Name" required/>
+            </div>
+          </div>
+          <div class="field">
+            <label>Email *</label>
+            <input type="email" name="Email" required/>
+          </div>
+          <div class="field">
+            <label>Comment *</label>
+            <textarea name="Comment" rows="5" required></textarea>
+          </div>
+          <div class="checkbox-row">
+            <input type="checkbox" id="marketingOptIn" name="Marketing Opt-In"/>
+            <label for="marketingOptIn">I agree to receive marketing and promotional materials.</label>
+          </div>
+          <button type="submit" class="form-submit">Submit</button>
+        </form>
+      </div>
+
+      <div class="info-card">
+        <h4>Navy Wrestling Club</h4>
+        <p>A 501(c)(3) nonprofit supporting Naval Academy wrestling — founded by alumni, for the Midshipmen of today.</p>
+        <h4>Follow Along</h4>
+        <p style="margin-bottom:10px;">Stay up to date on results, events, and program news.</p>
+        <div class="info-social">
+          <a href="https://www.facebook.com/NavyWC" aria-label="Facebook" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          <a href="https://twitter.com/NavyWC" aria-label="X / Twitter" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M4 4l16 16M20 4L4 20"/></svg></a>
+          <a href="https://www.instagram.com/navywrestlingclub/" aria-label="Instagram" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ NEWSLETTER ═══ -->
+<section class="section" style="background:var(--white);">
+  <div class="container">
+    <div class="newsletter-card">
+      <p class="section-label">Stay Connected</p>
+      <h2 class="section-title">Join Our Newsletter</h2>
+      <p class="section-body">Get Club news, schedule updates, and ways to get involved sent straight to your inbox.</p>
+      <form class="newsletter-form" action="newsletter.html" method="get">
+        <input type="email" name="email" placeholder="Your email address" required/>
+        <button type="submit">Continue</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FINAL CTA ═══ -->
+<section class="final-cta">
+  <div class="container">
+    <h2>Want to Support the Team Instead?</h2>
+    <p>Skip the message and make a direct impact on Navy wrestling today.</p>
+    <div class="cta-btns">
+      <a class="btn-primary" href="donate.html">Donate Now</a>
+      <a class="btn-secondary" href="about.html">About the Club</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-col">
+      <h5>Navy Wrestling Club</h5>
+      <a href="home.html">Home</a>
+      <a href="about.html">About Us</a>
+      <a href="club-info.html">Club Info</a>
+      <a href="updates.html">Updates</a>
+      <a href="donors.html">Donors</a>
+      <a href="donate.html">Donate</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h5>More</h5>
+      <a href="newsletter.html">Join Our Newsletter</a>
+      <a href="https://schmee-com.myshopify.com/collections/navy-wrestling" target="_blank" rel="noopener">Shop Navy Wrestling</a>
+      <a href="https://www.navywrestlingclub.com/photo-archive.html" target="_blank" rel="noopener">Photo Archive</a>
+      <a href="https://www.navywrestlingclub.com/archive.html" target="_blank" rel="noopener">Video Archive</a>
+    </div>
+    <div class="footer-col">
+      <h5>Connect</h5>
+      <div class="footer-social">
+        <a href="https://www.facebook.com/NavyWC" aria-label="Facebook" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+        <a href="https://twitter.com/NavyWC" aria-label="X / Twitter" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M4 4l16 16M20 4L4 20"/></svg></a>
+        <a href="https://www.instagram.com/navywrestlingclub/" aria-label="Instagram" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+      </div>
+    </div>
+  </div>
+  <p class="footer-note">The Navy Wrestling Club is a 501(c)(3) nonprofit organization. Contributions are tax-deductible to the extent permitted by law.</p>
+</footer>
+
+</body>
+</html>
