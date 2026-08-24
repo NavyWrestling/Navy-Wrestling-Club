@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>About Us — Navy Wrestling Club</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy:#0a1f44; --navy-mid:#122757; --gold:#C5A028; --gold-lt:#e8c14a;
+    --white:#ffffff; --offwhite:#f5f6f8; --gray:#6b7280; --text:#1a1a2e; --border:#dde1e9;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family:'Source Sans 3',sans-serif; background:var(--offwhite); color:var(--text); line-height:1.6; -webkit-text-size-adjust:100%; }
+  .container { max-width:900px; margin:0 auto; padding:0 16px; }
+
+  /* NAV */
+  .nwc-nav { background:var(--navy); position:sticky; top:0; z-index:500; }
+  .nwc-nav-inner { max-width:1000px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:10px 16px; gap:16px; }
+  .nwc-logo { display:flex; align-items:center; gap:10px; text-decoration:none; flex-shrink:0; }
+  .nwc-logo img { height:38px; width:auto; display:block; }
+  .nwc-logo span { font-family:'Oswald',sans-serif; color:var(--white); font-size:13px; letter-spacing:1px; text-transform:uppercase; line-height:1.2; }
+  .nwc-links { display:flex; gap:4px; flex-wrap:wrap; justify-content:flex-end; }
+  .nwc-links a { font-family:'Oswald',sans-serif; font-size:13px; letter-spacing:1px; text-transform:uppercase; color:rgba(255,255,255,0.78); text-decoration:none; padding:8px 12px; border-radius:6px; transition:background 0.2s,color 0.2s; }
+  .nwc-links a:hover { background:rgba(255,255,255,0.08); color:var(--white); }
+  .nwc-links a.current { color:var(--gold); }
+  .nwc-links a.nav-donate { background:var(--gold); color:var(--navy); }
+  .nwc-links a.nav-donate:hover { background:var(--gold-lt); }
+  .nav-toggle { display:none; background:none; border:none; cursor:pointer; padding:6px; flex-shrink:0; -webkit-tap-highlight-color:transparent; }
+  .nav-toggle svg { width:26px; height:26px; stroke:var(--white); fill:none; stroke-width:2; stroke-linecap:round; }
+  @media (max-width:640px) {
+    .nav-toggle { display:block; }
+    .nwc-links { display:none; width:100%; flex-direction:column; gap:2px; padding-top:10px; justify-content:flex-start; }
+    .nwc-links.open { display:flex; }
+    .nwc-links a { width:100%; text-align:center; padding:13px; }
+  }
+
+  .jump-nav { background:var(--white); border-bottom:1px solid var(--border); position:sticky; top:67px; z-index:400; }
+  .jump-nav-inner { max-width:900px; margin:0 auto; display:flex; gap:6px; overflow-x:auto; padding:10px 16px; -webkit-overflow-scrolling:touch; }
+  .jump-nav a { flex:0 0 auto; font-family:'Oswald',sans-serif; font-size:12px; letter-spacing:1.5px; text-transform:uppercase; color:var(--navy); text-decoration:none; padding:8px 14px; border-radius:99px; background:var(--offwhite); white-space:nowrap; }
+  .jump-nav a:hover { background:var(--gold-lt); }
+  @media (max-width:640px) { .jump-nav { top:59px; } }
+
+  /* HERO */
+  .hero { background:linear-gradient(160deg,var(--navy) 0%,var(--navy-mid) 60%,#1a3a6e 100%); color:var(--white); padding:56px 20px 48px; text-align:center; position:relative; overflow:hidden; }
+  .hero::before { content:''; position:absolute; inset:0; background:repeating-linear-gradient(45deg,transparent,transparent 40px,rgba(197,160,40,0.04) 40px,rgba(197,160,40,0.04) 41px); pointer-events:none; }
+  .hero-eyebrow { font-family:'Oswald',sans-serif; font-size:12px; letter-spacing:3px; text-transform:uppercase; color:var(--gold); margin-bottom:14px; }
+  .hero h1 { font-family:'Oswald',sans-serif; font-size:clamp(32px,7vw,56px); font-weight:700; line-height:1.05; letter-spacing:-0.5px; margin-bottom:16px; text-transform:uppercase; }
+  .hero h1 span { color:var(--gold); }
+  .hero-sub { font-size:clamp(15px,3.5vw,18px); color:rgba(255,255,255,0.85); max-width:600px; margin:0 auto; }
+
+  /* SECTION */
+  .section { padding:52px 16px; }
+  .section-label { font-family:'Oswald',sans-serif; font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--gold); margin-bottom:6px; }
+  .section-title { font-family:'Oswald',sans-serif; font-size:clamp(24px,5vw,36px); font-weight:700; color:var(--navy); text-transform:uppercase; line-height:1.1; margin-bottom:14px; }
+  .section-body { color:var(--gray); font-size:15px; max-width:680px; }
+
+  /* MISSION / HISTORY */
+  .mission-section { background:var(--white); text-align:center; }
+  .mission-section .section-body { margin:0 auto; }
+  .history-section .section-body { margin-top:6px; }
+  .history-grid { display:grid; grid-template-columns:1fr 1fr; gap:32px; margin-top:28px; align-items:start; }
+  .history-grid p { font-size:15px; color:var(--gray); margin-bottom:14px; }
+  .history-grid p:last-child { margin-bottom:0; }
+  .history-stat-card { background:var(--offwhite); border-radius:14px; padding:28px 24px; }
+  .history-stat-card .stat-row { display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px solid var(--border); }
+  .history-stat-card .stat-row:last-child { border-bottom:none; }
+  .history-stat-card .stat-row span:first-child { color:var(--gray); font-size:14px; }
+  .history-stat-card .stat-row span:last-child { font-family:'Oswald',sans-serif; color:var(--navy); font-weight:600; font-size:14px; text-align:right; }
+
+  /* THROUGH THE YEARS — interactive era timeline */
+  .timeline-wrap { margin-top:44px; }
+  .timeline-label { font-family:'Oswald',sans-serif; font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--navy); margin-bottom:4px; }
+  .timeline-sub { font-size:13.5px; color:var(--gray); margin-bottom:20px; }
+  .timeline { position:relative; padding-left:28px; border-left:3px solid var(--border); }
+  .era { position:relative; margin-bottom:6px; }
+  .era::before { content:''; position:absolute; left:-34px; top:22px; width:13px; height:13px; border-radius:50%; background:var(--white); border:3px solid var(--gold); }
+  .era[open]::before, .era.current::before { background:var(--gold); }
+  .era summary { cursor:pointer; list-style:none; padding:14px 16px; background:var(--offwhite); border:1px solid var(--border); border-radius:10px; display:flex; align-items:baseline; justify-content:space-between; gap:10px; flex-wrap:wrap; }
+  .era summary::-webkit-details-marker { display:none; }
+  .era summary .era-name { font-family:'Oswald',sans-serif; font-size:15px; letter-spacing:0.5px; color:var(--navy); text-transform:uppercase; }
+  .era summary .era-years { font-size:12.5px; color:var(--gray); }
+  .era summary .era-arrow { margin-left:auto; font-size:13px; color:var(--gold); transition:transform .2s; }
+  .era[open] summary .era-arrow { transform:rotate(90deg); }
+  .era-body { padding:16px 16px 4px; }
+  .era-body p { font-size:14.5px; color:var(--text); line-height:1.6; margin-bottom:14px; max-width:640px; }
+  .era-aa { font-size:13.5px; color:var(--gray); line-height:1.6; margin-top:-6px; margin-bottom:14px; max-width:640px; }
+  .era-aa strong { color:var(--navy); }
+  @media (max-width:640px) {
+    .timeline { padding-left:22px; }
+    .era::before { left:-28px; }
+  }
+
+  /* PEOPLE GRID (board + staff) */
+  .people-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:18px; margin-top:32px; }
+  .people-card { background:var(--white); border:1px solid var(--border); border-radius:12px; padding:22px 20px; transition:box-shadow .2s, transform .2s; }
+  .people-card:hover { box-shadow:0 8px 24px rgba(10,31,68,0.1); transform:translateY(-2px); }
+  .people-card .role { font-family:'Oswald',sans-serif; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--gold); margin-bottom:4px; }
+  .people-card h4 { font-family:'Oswald',sans-serif; font-size:17px; color:var(--navy); line-height:1.3; margin-bottom:8px; }
+  .people-card p { font-size:13.5px; color:var(--gray); line-height:1.55; }
+  .people-card img.headshot { width:72px; height:72px; border-radius:50%; object-fit:cover; display:block; margin-bottom:12px; border:2px solid var(--gold-lt); }
+
+  /* VIDEO SECTION */
+  .video-section { background:var(--navy); padding:56px 20px; text-align:center; }
+  .video-section-sub { color:rgba(255,255,255,0.78); font-size:16px; max-width:560px; margin:0 auto 36px; }
+  .video-grid { display:grid; grid-template-columns:1fr 1fr; gap:28px; max-width:860px; margin:0 auto; }
+  .video-wrap { text-align:left; }
+  .video-name { font-family:'Oswald',sans-serif; font-size:13px; letter-spacing:2px; text-transform:uppercase; color:var(--gold); margin-bottom:10px; }
+  .video-frame-wrap { position:relative; padding-bottom:56.25%; height:0; border-radius:10px; overflow:hidden; background:rgba(255,255,255,0.06); }
+  .video-frame-wrap iframe { position:absolute; top:0; left:0; width:100%; height:100%; border-radius:10px; }
+  @media (max-width:640px) { .video-grid { grid-template-columns:1fr; } }
+
+  /* FINAL CTA */
+  .final-cta { background:linear-gradient(135deg,var(--gold) 0%,#d4aa2e 100%); padding:56px 20px; text-align:center; }
+  .final-cta h2 { font-family:'Oswald',sans-serif; font-size:clamp(26px,6vw,44px); text-transform:uppercase; color:var(--navy); margin-bottom:10px; }
+  .final-cta p { color:rgba(10,31,68,0.75); font-size:16px; margin-bottom:28px; }
+  .cta-btns { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+  .btn-primary { padding:14px 32px; background:var(--navy); color:var(--white); border:none; border-radius:8px; font-family:'Oswald',sans-serif; font-size:15px; letter-spacing:2px; text-transform:uppercase; cursor:pointer; transition:opacity 0.2s; text-decoration:none; display:inline-block; min-height:48px; line-height:20px; }
+  .btn-primary:hover { opacity:0.88; }
+  .btn-secondary { padding:12px 28px; background:none; color:var(--navy); border:2px solid var(--navy); border-radius:8px; font-family:'Oswald',sans-serif; font-size:15px; letter-spacing:2px; text-transform:uppercase; cursor:pointer; transition:background 0.2s,color 0.2s; text-decoration:none; display:inline-block; min-height:48px; line-height:24px; }
+  .btn-secondary:hover { background:var(--navy); color:var(--white); }
+
+  /* FOOTER */
+  .site-footer { background:var(--navy); color:rgba(255,255,255,0.7); padding:36px 16px 24px; }
+  .footer-inner { max-width:900px; margin:0 auto; display:flex; flex-wrap:wrap; justify-content:space-between; gap:24px; }
+  .footer-col h5 { font-family:'Oswald',sans-serif; font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--gold); margin-bottom:10px; }
+  .footer-col a { display:block; color:rgba(255,255,255,0.7); text-decoration:none; font-size:14px; margin-bottom:6px; }
+  .footer-col a:hover { color:var(--white); }
+  .footer-social { display:flex; gap:12px; margin-top:6px; }
+  .footer-social a { width:34px; height:34px; border-radius:50%; background:rgba(255,255,255,0.08); display:flex; align-items:center; justify-content:center; }
+  .footer-social svg { width:16px; height:16px; stroke:var(--white); fill:none; stroke-width:1.8; }
+  .footer-note { text-align:center; padding-top:24px; margin-top:24px; border-top:1px solid rgba(255,255,255,0.12); font-size:12px; color:rgba(255,255,255,0.5); }
+
+  @media (max-width:640px) {
+    .history-grid { grid-template-columns:1fr; }
+  }
+  @media (max-width:480px) {
+    .cta-btns { flex-direction:column; align-items:stretch; }
+    .btn-primary, .btn-secondary { width:100%; text-align:center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav class="nwc-nav">
+  <div class="nwc-nav-inner">
+    <a class="nwc-logo" href="home.html">
+      <img src="https://www.navywrestlingclub.com/uploads/1/4/7/2/147221784/nwclogo.png" alt="Navy Wrestling Club logo"/>
+      <span>Navy Wrestling<br>Club</span>
+    </a>
+        <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" onclick="var l=document.getElementById('nwcLinks'); var open=l.classList.toggle('open'); this.setAttribute('aria-expanded', open);">
+      <svg viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+    <div class="nwc-links" id="nwcLinks">
+      <a href="about.html" class="current">About</a>
+      <a href="club-info.html">Club</a>
+      <a href="updates.html">Updates</a>
+      <a href="donors.html">Donors</a>
+      <a href="contact.html">Contact</a>
+      <a href="https://schmee-com.myshopify.com/collections/navy-wrestling" target="_blank" rel="noopener">Shop</a>
+      <a href="donate.html" class="nav-donate">Donate</a>
+    </div>
+  </div>
+</nav>
+
+<div class="jump-nav">
+  <div class="jump-nav-inner">
+    <a href="#mission">Mission</a>
+    <a href="#staff">Coaching Staff</a>
+    <a href="#board">Board Members</a>
+  </div>
+</div>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <p class="hero-eyebrow">Navy Wrestling Club · Est. 2014</p>
+  <h1>About <span>the Club</span></h1>
+  <p class="hero-sub">A nonprofit founded and run by former Naval Academy wrestlers, dedicated to mentoring and coaching the next generation of Midshipmen athletes.</p>
+</section>
+
+<!-- ═══ MISSION ═══ -->
+<section class="section mission-section" id="mission">
+  <div class="container">
+    <p class="section-label">Our Mission</p>
+    <h2 class="section-title">Elevating Athletes. Developing Leaders.</h2>
+    <p class="section-body">The Navy Wrestling Club is dedicated to elevating the sport by providing elite amateur athletes in our region with the resources required to train and excel at the highest levels of competition. We prioritize engagement with our dedicated alumni and supporters to foster a lifelong brotherhood built on shared values and resilience. In partnership with our supporters, we build the foundation for these young men to succeed on the mat, in their academic pursuits, and ultimately as future officers and leaders in our nation.</p>
+  </div>
+</section>
+
+<!-- ═══ HISTORY ═══ -->
+<section class="section history-section" style="background:var(--white);">
+  <div class="container">
+    <p class="section-label">Our History</p>
+    <h2 class="section-title">From the Blue and Gold Club to Today</h2>
+    <div class="history-grid">
+      <div>
+        <p>The Navy Wrestling Club began as the Blue and Gold Club, formed by Naval Academy wrestling alumni who wanted to give back to the program that shaped them. Over time it grew into a registered 501(c)(3) nonprofit, with a clear focus: fund the gap between what the Naval Academy provides and what it takes to compete at a national championship level.</p>
+        <p>Today the Club funds coaching positions, travel and competition costs, training equipment, and alumni programming that keeps generations of Navy wrestlers connected. Every dollar donated goes directly back into the program — there is no overhead layer between donors and Midshipmen.</p>
+      </div>
+      <div>
+        <!-- Figures pulled from the Club's 2024-25 Annual Report (see home.html for the link) —
+             update these alongside the home.html Annual Report section each year. -->
+        <div class="history-stat-card">
+          <div class="stat-row"><span>Founded</span><span>2014</span></div>
+          <div class="stat-row"><span>Structure</span><span>501(c)(3) Nonprofit</span></div>
+          <div class="stat-row"><span>Donors (2024)</span><span>192</span></div>
+          <div class="stat-row"><span>Donor Growth Since 2020</span><span>+150%</span></div>
+          <div class="stat-row"><span>National Titles on Staff</span><span>5</span></div>
+          <div class="stat-row"><span>All-American Honors on Staff</span><span>14</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- THROUGH THE YEARS: text-only timeline of the Club's four head coaches, sourced
+         directly from the Club's own history one-pager. Each <details class="era"> is one
+         coach's tenure — click its header to expand. To update, edit the <p> description
+         and the "All-Americans:" line inside the right era's .era-body. -->
+    <div class="timeline-wrap">
+      <p class="timeline-label">Through the Years</p>
+      <p class="timeline-sub">Four head coaches who built the Navy Wrestling Club. Tap an era for the details.</p>
+      <div class="timeline">
+
+        <details class="era current" open>
+          <summary><span class="era-name">Current Era</span><span class="era-years">2020 – Present</span><span class="era-arrow">▸</span></summary>
+          <div class="era-body">
+            <p>To date, the club has raised over $680,000 toward our annual operational budget and launched a long-term initiative with a $5 million goal to ensure the enduring sustainability of our elite training environment. Strategically, our priorities have evolved to focus on recruiting elite, weight-class-specific training partners. This targeted investment directly elevates the competitive standard of the room, with the ultimate goal of developing athletes capable of reaching the podium at the highest tiers of national competition.</p>
+          </div>
+        </details>
+
+        <details class="era">
+          <summary><span class="era-name">Joel Sharratt</span><span class="era-years">2014 – 2020</span><span class="era-arrow">▸</span></summary>
+          <div class="era-body">
+            <p>Raised over $800,000 in his six years as head coach toward the Navy Wrestling Club.</p>
+          </div>
+        </details>
+
+        <details class="era">
+          <summary><span class="era-name">Bryan Antonelli</span><span class="era-years">2013 – 2014</span><span class="era-arrow">▸</span></summary>
+          <div class="era-body">
+            <p>The Navy Wrestling Club's first year raised $152,000 to get the Club established. Shortly thereafter, the Club hired All-Americans Josh Asper and Josh Manu.</p>
+          </div>
+        </details>
+
+        <details class="era">
+          <summary><span class="era-name">Coach Burnett</span><span class="era-years">2000 – 2013</span><span class="era-arrow">▸</span></summary>
+          <div class="era-body">
+            <p>Laid the groundwork for the Navy Wrestling Club by seeking approval from the Athletic Director and speaking with donors as Regional Training Centers were becoming established across the country.</p>
+          </div>
+        </details>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ BOARD ═══ -->
+<section class="section" id="board">
+  <div class="container">
+    <p class="section-label">Leadership</p>
+    <h2 class="section-title">Board of Directors</h2>
+    <p class="section-body">Navy Wrestling Club alumni who volunteer their time to guide the Club's mission and fundraising.</p>
+    <div class="people-grid">
+      <div class="people-card">
+        <p class="role">President</p>
+        <h4>Greg Gingeleski</h4>
+        <p>Leads the Club's board and sets strategic direction for fundraising and donor engagement on behalf of the wrestling program.</p>
+      </div>
+      <div class="people-card">
+        <p class="role">Former President</p>
+        <h4>John Sattler</h4>
+        <p>A driving force in growing the Club from its earliest days, John continues to support the board with institutional knowledge and alumni connections.</p>
+      </div>
+      <div class="people-card">
+        <p class="role">Treasurer</p>
+        <h4>Jay Antonelli</h4>
+        <p>Oversees the Club's finances, ensuring donor contributions are managed responsibly and directed to where they have the greatest impact.</p>
+      </div>
+      <div class="people-card">
+        <p class="role">Secretary</p>
+        <h4>Ben Robertson</h4>
+        <p>Manages board communications and records, keeping the Club's operations organized and donors informed.</p>
+      </div>
+      <div class="people-card">
+        <p class="role">Board Member</p>
+        <h4>Josh Jabin</h4>
+        <p>A Naval Academy wrestling alum supporting the Club's mission to mentor current Midshipmen athletes.</p>
+      </div>
+      <div class="people-card">
+        <p class="role">Board Member</p>
+        <h4>Mike Barikian</h4>
+        <p>Class of 2004. A vocal advocate for the brotherhood the Club builds among wrestlers across generations, on and off the mat.</p>
+      </div>
+      <div class="people-card">
+        <p class="role">Board Member</p>
+        <h4>Dustin Haislip</h4>
+        <p>Supports the board's outreach efforts, helping connect alumni and supporters back to the current team.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ COACHING STAFF ═══ -->
+<section class="section" style="background:var(--white);" id="staff">
+  <div class="container">
+    <p class="section-label">Coaching Staff</p>
+    <h2 class="section-title">Meet the Coaches</h2>
+    <p class="section-body">Donor support funds elite-level coaching, helping Navy compete at the highest levels of collegiate wrestling.</p>
+    <div class="people-grid">
+      <div class="people-card">
+        <img class="headshot" src="https://www.navywrestlingclub.com/uploads/1/4/7/2/147221784/editor/coach-kolat.jpg" alt="Coach Cary Kolat" loading="lazy" decoding="async"/>
+        <p class="role">Head Coach</p>
+        <h4>Cary Kolat</h4>
+        <p>A two-time NCAA champion at Lock Haven and 2000 Olympian, Kolat won a silver and bronze medal on the U.S. Freestyle team and was inducted into the National Wrestling Hall of Fame in 2017. He now leads the Navy program as head coach.</p>
+      </div>
+      <div class="people-card">
+        <img class="headshot" src="https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/navysports.com/images/2025/6/25/Davis_Barry0425.jpg" alt="Coach Barry Davis" loading="lazy" decoding="async"/>
+        <p class="role">Assistant Coach</p>
+        <h4>Barry Davis</h4>
+        <p>A three-time NCAA champion at Iowa (1982-84) and 1984 Olympic silver medalist, Davis spent 25 years as head coach at Wisconsin before joining Navy, bringing a philosophy built on discipline and technical excellence.</p>
+      </div>
+      <div class="people-card">
+        <img class="headshot" src="https://www.navywrestlingclub.com/uploads/1/4/7/2/147221784/blaize-cabell_orig.jpg" alt="Coach Blaize Cabell" loading="lazy" decoding="async"/>
+        <p class="role">Assistant Coach</p>
+        <h4>Blaize Cabell</h4>
+        <p>Now in his fifth season at Navy, Cabell coaches the 184/197/285-lb classes and guided David Key to an 8th-place NCAA finish — Navy's first All-American under Cary Kolat. A 3x NCAA qualifier at Northern Iowa.</p>
+      </div>
+      <div class="people-card">
+        <img class="headshot" src="https://www.navywrestlingclub.com/uploads/1/4/7/2/147221784/quinn_orig.jpg" alt="Coach Quinn Kinner" loading="lazy" decoding="async"/>
+        <p class="role">Assistant Coach</p>
+        <h4>Quinn Kinner</h4>
+        <p>A two-time New Jersey state champion who went on to wrestle at Ohio State and Rider, Kinner earned 2024 NCAA All-American honors by finishing 8th at the national tournament.</p>
+      </div>
+      <div class="people-card">
+        <img class="headshot" src="https://www.navywrestlingclub.com/uploads/1/4/7/2/147221784/matthew-hicks_orig.jpeg" alt="Coach Matthew Hicks" loading="lazy" decoding="async"/>
+        <p class="role">Assistant Coach</p>
+        <h4>Matthew Hicks</h4>
+        <p>Son of former Navy NCAA runner-up Wayne Hicks, Matt grew up around the program through Navy Juniors before returning as a coach, having wrestled at Bloomsburg University.</p>
+      </div>
+      <div class="people-card">
+        <img class="headshot" src="https://www.navywrestlingclub.com/uploads/1/4/7/2/147221784/published/mack-vs-army.jpg" alt="Coach Mack Lewnes" loading="lazy" decoding="async"/>
+        <p class="role">Assistant Coach</p>
+        <h4>Mack Lewnes</h4>
+        <p>Cornell's all-time winningest wrestler at 150-12, a 3x All-American, and a 4-year EIWA champion — one of only 9 wrestlers in over 100 years to do so. Brings elite competitive pedigree to the Navy staff.</p>
+      </div>
+      <div class="people-card">
+        <img class="headshot" src="https://www.navywrestlingclub.com/uploads/1/4/7/2/147221784/published/peyton-walsh-photo.jpg" alt="Coach Peyton Walsh" loading="lazy" decoding="async"/>
+        <p class="role">Assistant Coach</p>
+        <h4>Peyton Walsh</h4>
+        <p>A 2015 Naval Academy graduate and former team captain, Walsh returned to Annapolis in 2024 after nine years in the Marine Corps, where he earned a Pan-American gold medal and was a 2020 Tokyo Olympic alternate.</p>
+      </div>
+      <div class="people-card">
+        <img class="headshot" src="https://www.navywrestlingclub.com/uploads/1/4/7/2/147221784/screenshot-2025-07-15-at-10-34-53-am_orig.png" alt="Coach Zac Braunagel" loading="lazy" decoding="async"/>
+        <p class="role">Assistant Coach</p>
+        <h4>Zac Braunagel</h4>
+        <p>A 2025 Illinois graduate, 5-time NCAA qualifier, and 2x Big Ten bronze medalist, Braunagel competed for Team USA on the 2023 World Team and 2024-25 National Team, finishing 3rd at the 2024 Olympic Team Trials.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FINAL CTA ═══ -->
+<section class="final-cta">
+  <div class="container">
+    <h2>Be Part of the Story</h2>
+    <p>Your gift funds the coaching, travel, and brotherhood that define the Navy Wrestling Club.</p>
+    <div class="cta-btns">
+      <a class="btn-primary" href="donate.html">Donate Now</a>
+      <a class="btn-secondary" href="updates.html">See Latest Updates</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-col">
+      <h5>Navy Wrestling Club</h5>
+      <a href="home.html">Home</a>
+      <a href="about.html">About Us</a>
+      <a href="club-info.html">Club Info</a>
+      <a href="updates.html">Updates</a>
+      <a href="donors.html">Donors</a>
+      <a href="donate.html">Donate</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h5>More</h5>
+      <a href="newsletter.html">Join Our Newsletter</a>
+      <a href="https://schmee-com.myshopify.com/collections/navy-wrestling" target="_blank" rel="noopener">Shop Navy Wrestling</a>
+      <a href="https://www.navywrestlingclub.com/photo-archive.html" target="_blank" rel="noopener">Photo Archive</a>
+      <a href="https://www.navywrestlingclub.com/archive.html" target="_blank" rel="noopener">Video Archive</a>
+    </div>
+    <div class="footer-col">
+      <h5>Connect</h5>
+      <div class="footer-social">
+        <a href="https://www.facebook.com/NavyWC" aria-label="Facebook" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+        <a href="https://twitter.com/NavyWC" aria-label="X / Twitter" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M4 4l16 16M20 4L4 20"/></svg></a>
+        <a href="https://www.instagram.com/navywrestlingclub/" aria-label="Instagram" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+      </div>
+    </div>
+  </div>
+  <p class="footer-note">The Navy Wrestling Club is a 501(c)(3) nonprofit organization. Contributions are tax-deductible to the extent permitted by law.</p>
+</footer>
+
+</body>
+</html>
