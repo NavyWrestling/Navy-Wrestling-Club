@@ -141,10 +141,9 @@
     <h2 class="section-title" style="text-align:center;">Tell Us About Yourself</h2>
 
     <div class="form-card">
-      <!-- Static mailto form: replace REPLACE_WITH_EMAIL with the
-           Club's real inbox address. For a no-email-client-popup
-           experience, swap this card for Weebly's native Form element. -->
-      <form action="mailto:REPLACE_WITH_EMAIL@navywrestlingclub.com" method="post" enctype="text/plain" id="newsletterForm">
+      <div class="success-banner" id="successBanner" style="display:none;background:#d1fae5;border:1px solid #6ee7b7;border-radius:10px;padding:18px 22px;margin-bottom:20px;font-family:'Oswald',sans-serif;color:#065f46;letter-spacing:1px;text-transform:uppercase;font-size:15px;text-align:center;">✓ You're signed up — welcome to the Navy Wrestling Club family!</div>
+      <form name="newsletter" method="POST" data-netlify="true" action="newsletter.html?sent=1" id="newsletterForm">
+        <input type="hidden" name="form-name" value="newsletter"/>
         <div class="field-row">
           <div class="field">
             <label>First Name *</label>
@@ -271,11 +270,14 @@
 <script>
   // Pre-fill the Primary Email field from the ?email= query string
   // that the Contact page's quick-capture form passes along.
+  // Also show success banner if ?sent=1 is present after Netlify submission.
   (function() {
     var params = new URLSearchParams(window.location.search);
     var email = params.get('email');
-    if (email) {
-      document.getElementById('primaryEmail').value = email;
+    if (email) { document.getElementById('primaryEmail').value = email; }
+    if (params.get('sent') === '1') {
+      document.getElementById('successBanner').style.display = 'block';
+      window.scrollTo(0, document.getElementById('successBanner').offsetTop - 100);
     }
   })();
 

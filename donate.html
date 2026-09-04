@@ -3,42 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Donate — Navy Wrestling Club</title>
+  <title>Support Navy Wrestling</title>
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    /* NAV */
-    .nwc-nav { background:#0a1f44; position:sticky; top:0; z-index:500; }
-    .nwc-nav-inner { max-width:1000px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:10px 16px; gap:16px; }
-    .nwc-logo { display:flex; align-items:center; gap:10px; text-decoration:none; flex-shrink:0; }
-    .nwc-logo img { height:38px; width:auto; display:block; }
-    .nwc-logo span { font-family:'Oswald',sans-serif; color:#fff; font-size:13px; letter-spacing:1px; text-transform:uppercase; line-height:1.2; }
-    .nwc-links { display:flex; gap:4px; flex-wrap:wrap; justify-content:flex-end; }
-    .nwc-links a { font-family:'Oswald',sans-serif; font-size:13px; letter-spacing:1px; text-transform:uppercase; color:rgba(255,255,255,0.78); text-decoration:none; padding:8px 12px; border-radius:6px; transition:background 0.2s,color 0.2s; }
-    .nwc-links a:hover { background:rgba(255,255,255,0.08); color:#fff; }
-    .nwc-links a.current { color:#C5A028; }
-    .nwc-links a.nav-donate { background:#C5A028; color:#0a1f44; }
-    .nwc-links a.nav-donate:hover { background:#e8c14a; }
-    .nav-toggle { display:none; background:none; border:none; cursor:pointer; padding:6px; flex-shrink:0; -webkit-tap-highlight-color:transparent; }
-    .nav-toggle svg { width:26px; height:26px; stroke:#fff; fill:none; stroke-width:2; stroke-linecap:round; }
-    @media (max-width:640px) {
-      .nav-toggle { display:block; }
-      .nwc-links { display:none; width:100%; flex-direction:column; gap:2px; padding-top:10px; justify-content:flex-start; }
-      .nwc-links.open { display:flex; }
-      .nwc-links a { width:100%; text-align:center; padding:13px; }
-    }
-
-    /* SITE FOOTER */
-    .site-footer { background:#0a1f44; color:rgba(255,255,255,0.7); padding:36px 16px 24px; }
-    .footer-inner { max-width:900px; margin:0 auto; display:flex; flex-wrap:wrap; justify-content:space-between; gap:24px; }
-    .footer-col h5 { font-family:'Oswald',sans-serif; font-size:12px; letter-spacing:2px; text-transform:uppercase; color:#C5A028; margin-bottom:10px; }
-    .footer-col a { display:block; color:rgba(255,255,255,0.7); text-decoration:none; font-size:14px; margin-bottom:6px; }
-    .footer-col a:hover { color:#fff; }
-    .footer-social { display:flex; gap:12px; margin-top:6px; }
-    .footer-social a { width:34px; height:34px; border-radius:50%; background:rgba(255,255,255,0.08); display:flex; align-items:center; justify-content:center; }
-    .footer-social svg { width:16px; height:16px; stroke:#fff; fill:none; stroke-width:1.8; }
-    .footer-bottom-note { text-align:center; padding-top:24px; margin-top:24px; border-top:1px solid rgba(255,255,255,0.12); font-size:12px; color:rgba(255,255,255,0.5); }
 
     :root {
       --navy:    #0a1f44;
@@ -108,17 +76,11 @@
     .progress-track { background: rgba(255,255,255,0.15); border-radius: 99px; height: 10px; overflow: hidden; }
     .progress-fill {
       background: linear-gradient(90deg, var(--gold), var(--gold-lt));
-      height: 100%; width: 0%; border-radius: 99px;
-      transition: width 1.4s ease-out;
+      height: 100%; width: 42%; border-radius: 99px;
+      animation: fillBar 1.4s ease-out forwards;
     }
+    @keyframes fillBar { from { width: 0 } to { width: 42% } }
     .progress-note { text-align: center; font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 8px; }
-
-    /* SUPPORT + SPRING SECTIONS */
-    .support-section { background: var(--offwhite); }
-    .support-body { font-size: 16px; color: var(--gray); max-width: 760px; line-height: 1.7; }
-    .spring-body { max-width: 760px; }
-    .spring-body p { font-size: 16px; color: var(--gray); line-height: 1.7; margin-bottom: 16px; }
-    .spring-body p:last-child { margin-bottom: 0; }
 
     /* ── CONTAINER ────────────────────────────────── */
     .container { max-width: 900px; margin: 0 auto; padding: 0 16px; }
@@ -239,6 +201,20 @@
       min-height: 48px; touch-action: manipulation; white-space: nowrap;
     }
     .donate-now-btn:hover { background: var(--gold-lt); }
+    .custom-recurring-wrap {
+      display: flex; align-items: center; gap: 14px; margin-top: 12px; flex-wrap: wrap;
+    }
+    .custom-recurring-label {
+      font-size: 13px; color: var(--gray); font-style: italic; white-space: nowrap;
+    }
+    .custom-recurring-btn {
+      padding: 10px 20px; background: none; border: 2px solid var(--navy);
+      border-radius: 8px; font-family: 'Oswald', sans-serif; font-size: 14px;
+      letter-spacing: 1px; text-transform: uppercase; color: var(--navy);
+      cursor: pointer; transition: background 0.2s, color 0.2s;
+      min-height: 44px; touch-action: manipulation; white-space: nowrap;
+    }
+    .custom-recurring-btn:hover { background: var(--navy); color: var(--white); }
 
     /* ── QUOTE ────────────────────────────────────── */
     .quote-section { background: var(--navy); color: var(--white); padding: 56px 20px; text-align: center; }
@@ -393,24 +369,152 @@
     .footer-note a { color: var(--navy); }
 
     /* ══════════════════════════════════════════════
-       REDIRECT NOTICE (brief overlay shown while
-       sending the donor to Stripe Checkout)
+       PAYMENT MODAL
     ══════════════════════════════════════════════ */
-    .redirect-overlay {
+    .modal-overlay {
       display: none; position: fixed; inset: 0; z-index: 1000;
-      background: rgba(10,31,68,0.85);
-      align-items: center; justify-content: center; text-align: center;
-      padding: 20px;
+      background: rgba(10,31,68,0.65); backdrop-filter: blur(4px);
+      align-items: flex-end; justify-content: center;
+      padding: 0;
     }
-    .redirect-overlay.open { display: flex; }
-    .redirect-box { color: var(--white); }
-    .redirect-spinner {
-      width: 36px; height: 36px; border-radius: 50%;
-      border: 3px solid rgba(255,255,255,0.25); border-top-color: var(--gold);
-      margin: 0 auto 16px; animation: spin 0.8s linear infinite;
+    .modal-overlay.open { display: flex; }
+
+    .modal {
+      background: var(--white); width: 100%; max-width: 520px;
+      max-height: 92vh; overflow-y: auto;
+      border-radius: 20px 20px 0 0;
+      box-shadow: 0 -8px 48px rgba(10,31,68,0.25);
+      animation: slideUp 0.28s cubic-bezier(0.32,0.72,0,1);
     }
-    @keyframes spin { to { transform: rotate(360deg); } }
-    .redirect-box p { font-family: 'Oswald', sans-serif; letter-spacing: 1px; text-transform: uppercase; font-size: 14px; }
+    @keyframes slideUp { from { transform: translateY(100%) } to { transform: translateY(0) } }
+
+    /* On wider screens, center it as a dialog */
+    @media (min-width: 600px) {
+      .modal-overlay { align-items: center; padding: 20px; }
+      .modal { border-radius: 16px; animation: modalIn 0.22s ease-out; }
+      @keyframes modalIn { from { opacity:0; transform: scale(0.97) translateY(8px) } to { opacity:1; transform: none } }
+    }
+
+    .modal-header {
+      background: var(--navy); padding: 20px 20px 16px;
+      display: flex; align-items: flex-start; justify-content: space-between;
+      position: sticky; top: 0; z-index: 2;
+      border-radius: 20px 20px 0 0;
+    }
+    @media (min-width: 600px) { .modal-header { border-radius: 16px 16px 0 0; } }
+
+    .modal-eyebrow { font-family: 'Oswald', sans-serif; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 3px; }
+    .modal-title { font-family: 'Oswald', sans-serif; font-size: 22px; font-weight: 700; color: var(--white); text-transform: uppercase; line-height: 1.1; }
+    .modal-amount { font-family: 'Oswald', sans-serif; font-size: 16px; color: rgba(255,255,255,0.65); margin-top: 3px; }
+    .modal-close {
+      background: rgba(255,255,255,0.12); border: none; border-radius: 8px;
+      color: var(--white); cursor: pointer; padding: 8px; line-height: 0;
+      transition: background 0.2s; flex-shrink: 0; min-width: 40px; min-height: 40px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .modal-close:hover { background: rgba(255,255,255,0.22); }
+    .modal-close svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2.5; stroke-linecap: round; }
+
+    .modal-body { padding: 20px; }
+
+    /* Steps */
+    .steps { display: flex; align-items: center; margin-bottom: 24px; }
+    .step { display: flex; align-items: center; gap: 6px; }
+    .step-num {
+      width: 26px; height: 26px; border-radius: 50%; border: 2px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Oswald', sans-serif; font-size: 12px; color: var(--gray);
+      flex-shrink: 0; transition: all 0.2s;
+    }
+    .step.active .step-num { background: var(--navy); border-color: var(--navy); color: var(--white); }
+    .step.done .step-num { background: var(--gold); border-color: var(--gold); color: var(--navy); }
+    .step-label { font-size: 12px; color: var(--gray); white-space: nowrap; }
+    .step.active .step-label { color: var(--navy); font-weight: 600; }
+    .step-line { flex: 1; height: 2px; background: var(--border); margin: 0 6px; }
+    .step-line.done { background: var(--gold); }
+
+    /* Step panels */
+    .step-panel { display: none; }
+    .step-panel.active { display: block; }
+
+    /* Form fields */
+    .field { margin-bottom: 14px; }
+    .field label { display: block; font-size: 13px; font-weight: 600; color: var(--navy); margin-bottom: 5px; }
+    .field input, .field select {
+      width: 100%; padding: 12px 13px; border: 2px solid var(--border); border-radius: 8px;
+      font-family: 'Source Sans 3', sans-serif; font-size: 16px; color: var(--text);
+      outline: none; transition: border-color 0.2s; background: var(--white);
+      min-height: 48px; -webkit-appearance: none;
+    }
+    .field input:focus, .field select:focus { border-color: var(--navy); }
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+    /* Card icon */
+    .card-input-wrap { position: relative; }
+    .card-input-wrap input { padding-right: 52px; }
+    .card-icon { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); }
+    .card-icon svg { width: 28px; height: 18px; }
+
+    /* Secure badge */
+    .secure-badge {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 12px; color: var(--gray); margin-top: 16px;
+      padding-top: 14px; border-top: 1px solid var(--border);
+    }
+    .secure-badge svg { width: 14px; height: 14px; stroke: var(--gray); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+
+    /* Recurring toggle */
+    .toggle-row {
+      display: flex; align-items: center; justify-content: space-between;
+      background: var(--offwhite); border-radius: 10px; padding: 13px 14px; margin-bottom: 18px;
+      gap: 12px;
+    }
+    .toggle-info h4 { font-family: 'Oswald', sans-serif; font-size: 14px; text-transform: uppercase; color: var(--navy); margin-bottom: 2px; }
+    .toggle-info p { font-size: 12px; color: var(--gray); }
+    .toggle { position: relative; width: 44px; height: 24px; flex-shrink: 0; }
+    .toggle input { opacity: 0; width: 0; height: 0; position: absolute; }
+    .toggle-slider { position: absolute; inset: 0; background: var(--border); border-radius: 99px; cursor: pointer; transition: background 0.2s; }
+    .toggle-slider::before {
+      content: ''; position: absolute; width: 18px; height: 18px;
+      background: var(--white); border-radius: 50%; left: 3px; top: 3px;
+      transition: transform 0.2s; box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    }
+    .toggle input:checked + .toggle-slider { background: var(--navy); }
+    .toggle input:checked + .toggle-slider::before { transform: translateX(20px); }
+
+    /* Summary */
+    .success-icon {
+      width: 56px; height: 56px; background: #ecfdf5; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; margin: 0 auto 16px;
+    }
+    .success-icon svg { width: 28px; height: 28px; stroke: #16a34a; fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+    .success-title { font-family: 'Oswald', sans-serif; font-size: 24px; text-transform: uppercase; color: var(--navy); text-align: center; margin-bottom: 6px; }
+    .success-msg { font-size: 14px; color: var(--gray); text-align: center; max-width: 340px; margin: 0 auto 20px; }
+    .success-summary { background: var(--offwhite); border-radius: 10px; padding: 14px 16px; margin-bottom: 20px; }
+    .summary-row { display: flex; justify-content: space-between; font-size: 13px; padding: 4px 0; gap: 8px; }
+    .summary-row .label { color: var(--gray); }
+    .summary-row .value { color: var(--navy); font-weight: 600; text-align: right; }
+
+    /* Nav buttons */
+    .modal-nav { display: flex; gap: 10px; margin-top: 20px; }
+    .btn-back {
+      flex: 0 0 auto; padding: 12px 18px; background: none; border: 2px solid var(--border);
+      border-radius: 8px; font-family: 'Oswald', sans-serif; font-size: 13px; letter-spacing: 1px;
+      text-transform: uppercase; color: var(--gray); cursor: pointer; transition: border-color 0.2s, color 0.2s;
+      min-height: 48px;
+    }
+    .btn-back:hover { border-color: var(--navy); color: var(--navy); }
+    .btn-next {
+      flex: 1; padding: 13px; background: var(--navy); color: var(--white); border: none;
+      border-radius: 8px; font-family: 'Oswald', sans-serif; font-size: 15px; letter-spacing: 2px;
+      text-transform: uppercase; cursor: pointer; transition: opacity 0.2s;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      min-height: 48px; touch-action: manipulation;
+    }
+    .btn-next:hover { opacity: 0.88; }
+    .btn-next svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+    .btn-gold { background: var(--gold); color: var(--navy); }
+    .btn-gold:hover { opacity: 0.9; }
 
     /* ── MOBILE OVERRIDES ─────────────────────────── */
     @media (max-width: 480px) {
@@ -433,15 +537,51 @@
       /* Custom amount input fills row */
       .custom-input-wrap { flex-direction: column; }
       .donate-now-btn { width: 100%; }
+
+      /* Modal nav */
+      .modal-nav { flex-direction: column; }
+      .btn-back { width: 100%; text-align: center; }
     }
 
     @media (prefers-reduced-motion: reduce) {
+      .progress-fill { animation: none; width: 42%; }
       * { transition: none !important; animation: none !important; }
     }
+
+  /* NAV */
+  .nwc-nav { background:var(--navy); position:sticky; top:0; z-index:500; }
+  .nwc-nav-inner { max-width:1000px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:10px 16px; gap:16px; }
+  .nwc-logo { display:flex; align-items:center; gap:10px; text-decoration:none; flex-shrink:0; }
+  .nwc-logo img { height:38px; width:auto; display:block; }
+  .nwc-logo span { font-family:'Oswald',sans-serif; color:var(--white); font-size:13px; letter-spacing:1px; text-transform:uppercase; line-height:1.2; }
+  .nwc-links { display:flex; gap:4px; flex-wrap:wrap; justify-content:flex-end; }
+  .nwc-links a { font-family:'Oswald',sans-serif; font-size:13px; letter-spacing:1px; text-transform:uppercase; color:rgba(255,255,255,0.78); text-decoration:none; padding:8px 12px; border-radius:6px; transition:background 0.2s,color 0.2s; }
+  .nwc-links a:hover { background:rgba(255,255,255,0.08); color:var(--white); }
+  .nwc-links a.current { color:var(--gold); }
+  .nwc-links a.nav-donate { background:var(--gold); color:var(--navy); }
+  .nwc-links a.nav-donate:hover { background:var(--gold-lt); }
+  .nav-toggle { display:none; background:none; border:none; cursor:pointer; padding:6px; flex-shrink:0; -webkit-tap-highlight-color:transparent; }
+  .nav-toggle svg { width:26px; height:26px; stroke:var(--white); fill:none; stroke-width:2; stroke-linecap:round; }
+  @media (max-width:640px) {
+    .nav-toggle { display:block; }
+    .nwc-links { display:none; width:100%; flex-direction:column; gap:2px; padding-top:10px; justify-content:flex-start; }
+    .nwc-links.open { display:flex; }
+    .nwc-links a { width:100%; text-align:center; padding:13px; }
+  }
+
+  /* FOOTER */
+  .site-footer { background:var(--navy); color:rgba(255,255,255,0.7); padding:36px 16px 24px; }
+  .footer-inner { max-width:900px; margin:0 auto; display:flex; flex-wrap:wrap; justify-content:space-between; gap:24px; }
+  .footer-col h5 { font-family:'Oswald',sans-serif; font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--gold); margin-bottom:10px; }
+  .footer-col a { display:block; color:rgba(255,255,255,0.7); text-decoration:none; font-size:14px; margin-bottom:6px; }
+  .footer-col a:hover { color:var(--white); }
+  .footer-social { display:flex; gap:12px; margin-top:6px; }
+  .footer-social a { width:34px; height:34px; border-radius:50%; background:rgba(255,255,255,0.08); display:flex; align-items:center; justify-content:center; }
+  .footer-social svg { width:16px; height:16px; stroke:var(--white); fill:none; stroke-width:1.8; }
+  .footer-note { text-align:center; padding-top:24px; margin-top:24px; border-top:1px solid rgba(255,255,255,0.12); font-size:12px; color:rgba(255,255,255,0.5); }
   </style>
 </head>
 <body>
-
 <!-- ═══ NAV ═══ -->
 <nav class="nwc-nav">
   <div class="nwc-nav-inner">
@@ -464,18 +604,19 @@
   </div>
 </nav>
 
+
 <!-- ═══ HERO ═══════════════════════════════════════════ -->
 <section class="hero">
   <p class="hero-eyebrow">Navy Wrestling Club · Est. 2014</p>
   <h1>Fuel the <span>Fight</span></h1>
-  <p class="hero-sub">Your support sends Midshipmen to the mat — and beyond. Help us hit our <strong id="heroGoalAmt">$300,000</strong> goal this season.</p>
+  <p class="hero-sub">Your support sends Midshipmen to the mat — and beyond. Help us hit our $300,000 goal this season.</p>
   <div class="progress-wrap">
     <div class="progress-labels">
-      <span><strong id="raisedAmt">$0</strong> raised</span>
-      <span>Goal: <strong id="goalAmt">$0</strong></span>
+      <span><strong>$126,000</strong> raised</span>
+      <span>Goal: <strong>$300,000</strong></span>
     </div>
-    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
-    <p class="progress-note" id="progressNote">Loading progress…</p>
+    <div class="progress-track"><div class="progress-fill"></div></div>
+    <p class="progress-note">42% of goal reached — join 180+ donors</p>
   </div>
 </section>
 
@@ -497,26 +638,6 @@
   </div>
 </div>
 
-<!-- ═══ SUPPORT THE CLUB ══════════════════════════════ -->
-<section class="section support-section">
-  <div class="container">
-    <p class="section-label">Support the Club</p>
-    <p class="support-body">The Navy Wrestling Club strengthens the wrestling community by providing the resources required for elite competitors to excel at the highest level. The club prioritizes engagement with alumni and supporters to strengthen our lifelong brotherhood. In partnership with elite supporters and alumni, we build the foundation for these young men to succeed on the mat, in the classroom, as Navy and Marine Corps officers, and as leaders in our nation.</p>
-  </div>
-</section>
-
-<!-- ═══ SPRING CAMPAIGN ════════════════════════════════ -->
-<section class="section spring-section" style="background:var(--white);">
-  <div class="container">
-    <p class="section-label">This Year's Campaign</p>
-    <h2 class="section-title">We Need Your Help</h2>
-    <div class="spring-body">
-      <p>Each year, the Navy Wrestling Club has grown more and more support from our alumni and fanbase. The increased support has allowed us to hire new coaches, purchase new training equipment, host social events, and participate in off-season training and competition events. The Navy Wrestling Club has set a new fundraising goal this year with the hopes of hiring another coach and training partner to aid in the development of these young men on and off the mat. We have also increased our annual fundraising goal to $300k to help us continue the alumni engagement progress we've made over the last several years… <strong>AND WE NEED YOUR HELP!</strong></p>
-      <p>This year, we would like to thank all our new and returning supporters with some Navy Wrestling Club apparel. Become a recurring donor of <strong>$50/month</strong> or provide a one-time donation of <strong>$600</strong> to receive a pair of Navy Wrestling Club T-shirts, OR become a recurring donor of <strong>$100/month</strong> or provide a one-time donation of <strong>$1,200</strong> to receive both T-shirts and an Under Armour quarter-zip.</p>
-    </div>
-  </div>
-</section>
-
 <!-- ═══ DONATION TIERS ═══════════════════════════════ -->
 <section class="section">
   <div class="container">
@@ -531,18 +652,18 @@
       </div>
 
       <!-- MONTHLY -->
-      <div id="monthly" class="freq-panel">
+      <div id="monthly" class="freq-panel" style="display:block;">
         <div class="tiers">
           <div class="tier-card tier-blue">
             <p class="tier-title">Blue</p>
             <div class="tier-price"><sup>$</sup>25</div>
             <p class="tier-period">per month</p>
             <ul class="tier-perks">
-              <li>Recognition in newsletter</li>
-              <li>Digital supporter badge</li>
-              <li>Season updates &amp; results</li>
+              <li>Official NWC supporter recognition</li>
+              <li>Season updates &amp; insider results</li>
+              <li>Access to exclusive member content</li>
             </ul>
-            <button class="tier-cta" onclick="goToStripe('monthly_blue')">Give $25 / mo</button>
+            <button class="tier-cta" onclick="window.open('https://buy.stripe.com/3cseWZ66kfrRbqE5kk','_blank')">Give $25 / mo</button>
           </div>
           <div class="tier-card tier-gold featured">
             <span class="tier-badge">Most Popular</span>
@@ -551,11 +672,11 @@
             <p class="tier-period">per month</p>
             <ul class="tier-perks">
               <li>Everything in Blue</li>
-              <li>2 NWC T-Shirts</li>
-              <li>Name on Donor Wall</li>
-              <li>Exclusive event invitations</li>
+              <li>Your name on the NWC Donor Wall</li>
+              <li>Recognition in the NWC newsletter</li>
+              <li>Exclusive NWC supporter gear</li>
             </ul>
-            <button class="tier-cta" onclick="goToStripe('monthly_gold')">Give $50 / mo</button>
+            <button class="tier-cta" onclick="window.open('https://buy.stripe.com/14kcOR3Yc2F51Q4aEF','_blank')">Give $50 / mo</button>
           </div>
           <div class="tier-card tier-star">
             <p class="tier-title">⭐ Star</p>
@@ -563,27 +684,22 @@
             <p class="tier-period">per month</p>
             <ul class="tier-perks">
               <li>Everything in Gold</li>
-              <li>Under Armour Quarter-Zip</li>
-              <li>Meet-the-team event access</li>
-              <li>Personal thank-you call</li>
+              <li>Exclusive VIP event invitations</li>
+              <li>Premium NWC gear package</li>
+              <li>Personal thank-you letter from the program</li>
             </ul>
-            <button class="tier-cta" onclick="goToStripe('monthly_star')">Give $100 / mo</button>
+            <button class="tier-cta" onclick="window.open('https://buy.stripe.com/9AQeWZ0M04Nd1Q4bIK','_blank')">Give $100 / mo</button>
           </div>
         </div>
         <div class="custom-section">
-          <h3>Give a Custom Monthly Amount</h3>
-          <div class="amount-grid">
-            <button class="amount-btn" onclick="selectAmount(this, 15, 'customAmtMonthly', 'monthly_custom')">$15</button>
-            <button class="amount-btn" onclick="selectAmount(this, 30, 'customAmtMonthly', 'monthly_custom')">$30</button>
-            <button class="amount-btn" onclick="selectAmount(this, 75, 'customAmtMonthly', 'monthly_custom')">$75</button>
-            <button class="amount-btn" onclick="selectAmount(this, 150, 'customAmtMonthly', 'monthly_custom')">$150</button>
-          </div>
+          <h3>Custom Monthly Amount</h3>
           <div class="custom-input-wrap">
-            <input type="number" id="customAmtMonthly" placeholder="$ Enter amount" min="1"/>
-            <button class="donate-now-btn" onclick="goToStripeCustom('customAmtMonthly', 'monthly_custom')">Donate Now →</button>
+            <input type="number" id="monthlyCustomAmt" placeholder="$ Enter amount" min="1" inputmode="numeric"/>
+            <button class="donate-now-btn" onclick="openCustomMonthlyModal()">Give Monthly →</button>
           </div>
         </div>
       </div>
+
 
       <!-- ONE-TIME -->
       <div id="onetime" class="freq-panel" style="display:none;">
@@ -593,21 +709,23 @@
             <div class="tier-price"><sup>$</sup>100</div>
             <p class="tier-period">one-time gift</p>
             <ul class="tier-perks">
-              <li>Recognition in newsletter</li>
-              <li>Digital supporter badge</li>
+              <li>Official NWC supporter recognition</li>
+              <li>Season updates &amp; insider results</li>
+              <li>Access to exclusive member content</li>
             </ul>
-            <button class="tier-cta" onclick="goToStripe('onetime_blue')">Give $100</button>
+            <button class="tier-cta" onclick="window.open('https://buy.stripe.com/9AQ6qt2U8frRbqE5kt','_blank')">Give $100</button>
           </div>
           <div class="tier-card tier-gold">
             <p class="tier-title">Gold</p>
             <div class="tier-price"><sup>$</sup>600</div>
             <p class="tier-period">one-time gift</p>
             <ul class="tier-perks">
-              <li>2 NWC T-Shirts</li>
-              <li>Name on Donor Wall</li>
-              <li>Event invitations</li>
+              <li>Everything in Blue</li>
+              <li>Your name on the NWC Donor Wall</li>
+              <li>Recognition in the NWC newsletter</li>
+              <li>Exclusive NWC supporter gear</li>
             </ul>
-            <button class="tier-cta" onclick="goToStripe('onetime_gold')">Give $600</button>
+            <button class="tier-cta" onclick="window.open('https://buy.stripe.com/dR69CFgKY0wX2U89AL','_blank')">Give $600</button>
           </div>
           <div class="tier-card tier-star featured">
             <span class="tier-badge">Most Impactful</span>
@@ -615,25 +733,27 @@
             <div class="tier-price"><sup>$</sup>1,200</div>
             <p class="tier-period">one-time gift</p>
             <ul class="tier-perks">
-              <li>T-Shirts + UA Quarter-Zip</li>
-              <li>Meet-the-team access</li>
-              <li>Personal thank-you call</li>
+              <li>Everything in Gold</li>
+              <li>Exclusive VIP event invitations</li>
+              <li>Premium NWC gear package</li>
+              <li>Personal thank-you letter from the program</li>
             </ul>
-            <button class="tier-cta" onclick="goToStripe('onetime_star')">Give $1,200</button>
+            <button class="tier-cta" onclick="window.open('https://buy.stripe.com/4gw1691Q43J93Yc28k','_blank')">Give $1,200</button>
           </div>
         </div>
         <div class="custom-section">
           <h3>Give a Custom Amount</h3>
           <div class="amount-grid">
-            <button class="amount-btn" onclick="selectAmount(this, 150, 'customAmt', 'onetime_custom')">$150</button>
-            <button class="amount-btn" onclick="selectAmount(this, 300, 'customAmt', 'onetime_custom')">$300</button>
-            <button class="amount-btn" onclick="selectAmount(this, 750, 'customAmt', 'onetime_custom')">$750</button>
-            <button class="amount-btn" onclick="selectAmount(this, 1500, 'customAmt', 'onetime_custom')">$1,500</button>
+            <button class="amount-btn" onclick="selectAmount(this, 100)">$100</button>
+            <button class="amount-btn" onclick="selectAmount(this, 250)">$250</button>
+            <button class="amount-btn" onclick="selectAmount(this, 500)">$500</button>
+            <button class="amount-btn" onclick="selectAmount(this, 1000)">$1,000</button>
           </div>
           <div class="custom-input-wrap">
-            <input type="number" id="customAmt" placeholder="$ Enter amount" min="1"/>
-            <button class="donate-now-btn" onclick="goToStripeCustom('customAmt', 'onetime_custom')">Donate Now →</button>
+            <input type="number" id="customAmt" placeholder="$ Enter amount" min="1" inputmode="numeric"/>
+            <button class="donate-now-btn" onclick="openCustomModal()">Give Once →</button>
           </div>
+
         </div>
       </div>
     </div>
@@ -709,7 +829,7 @@
     <h2>Go Navy. Beat Army.</h2>
     <p>Join 180+ supporters investing in the next generation of Navy warriors.</p>
     <div class="cta-btns">
-      <button class="btn-primary" onclick="goToStripe('monthly_gold')">Become a Monthly Donor</button>
+      <button class="btn-primary" onclick="window.open('https://buy.stripe.com/14kcOR3Yc2F51Q4aEF','_blank')">Become a Monthly Donor</button>
     </div>
     <div class="cta-onetime">
       <span class="cta-onetime-label">One-Time Gift</span>
@@ -722,15 +842,16 @@
           placeholder="Enter amount"
           min="1"
           inputmode="numeric"
-          onkeydown="if(event.key==='Enter') goToStripeCustom('ctaCustomAmt')"
+          onkeydown="if(event.key==='Enter') openCtaCustomModal()"
         />
-        <button class="cta-onetime-btn" onclick="goToStripeCustom('ctaCustomAmt')">Donate →</button>
+        <button class="cta-onetime-btn" onclick="openCtaCustomModal()">Donate →</button>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══ FOOTER ════════════════════════════════════════ -->
+
+<!-- ═══ FOOTER ═══ -->
 <footer class="site-footer">
   <div class="footer-inner">
     <div class="footer-col">
@@ -759,114 +880,271 @@
       </div>
     </div>
   </div>
-  <p class="footer-bottom-note">The Navy Wrestling Club is a 501(c)(3) nonprofit organization. Contributions are tax-deductible to the extent permitted by law.</p>
+  <p class="footer-note">The Navy Wrestling Club is a 501(c)(3) nonprofit organization. Contributions are tax-deductible to the extent permitted by law.</p>
 </footer>
 
+
+
 <!-- ═══════════════════════════════════════════════════
-     STRIPE REDIRECT OVERLAY
-     Shown briefly while the donor is sent to the
-     Stripe-hosted Checkout page to enter card details.
+     PAYMENT MODAL
 ═══════════════════════════════════════════════════ -->
-<div class="redirect-overlay" id="redirectOverlay">
-  <div class="redirect-box">
-    <div class="redirect-spinner"></div>
-    <p>Taking you to secure checkout…</p>
+<div class="modal-overlay" id="modalOverlay" onclick="overlayClick(event)">
+  <div class="modal">
+
+    <div class="modal-header">
+      <div>
+        <p class="modal-eyebrow">Navy Wrestling Club</p>
+        <h3 class="modal-title" id="modalTitle">Gold</h3>
+        <p class="modal-amount" id="modalAmount">$50 / month</p>
+      </div>
+      <button class="modal-close" onclick="closeModal()" aria-label="Close">
+        <svg viewBox="0 0 18 18"><line x1="2" y1="2" x2="16" y2="16"/><line x1="16" y1="2" x2="2" y2="16"/></svg>
+      </button>
+    </div>
+
+    <div class="modal-body">
+
+      <!-- Step Indicator -->
+      <div class="steps">
+        <div class="step active" id="step-ind-1">
+          <div class="step-num">1</div>
+          <span class="step-label">Your Info</span>
+        </div>
+        <div class="step-line" id="line-1"></div>
+        <div class="step" id="step-ind-2">
+          <div class="step-num">2</div>
+          <span class="step-label">Payment</span>
+        </div>
+        <div class="step-line" id="line-2"></div>
+        <div class="step" id="step-ind-3">
+          <div class="step-num">3</div>
+          <span class="step-label">Confirm</span>
+        </div>
+      </div>
+
+      <!-- STEP 1: Personal Info -->
+      <div class="step-panel active" id="panel-1">
+        <div class="field-row">
+          <div class="field">
+            <label>First Name</label>
+            <input type="text" id="firstName" placeholder="John" autocomplete="given-name"/>
+          </div>
+          <div class="field">
+            <label>Last Name</label>
+            <input type="text" id="lastName" placeholder="Doe" autocomplete="family-name"/>
+          </div>
+        </div>
+        <div class="field">
+          <label>Email Address</label>
+          <input type="email" id="email" placeholder="john@example.com" autocomplete="email"/>
+        </div>
+        <div class="toggle-row" id="recurringToggleRow">
+          <div class="toggle-info">
+            <h4>Make it recurring</h4>
+            <p>Maximize your impact — cancel anytime</p>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" id="recurringCheck" checked/>
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+        <div class="modal-nav">
+          <button class="btn-next" onclick="goStep(2)">
+            Continue to Payment
+            <svg viewBox="0 0 18 18"><line x1="3" y1="9" x2="15" y2="9"/><polyline points="10,4 15,9 10,14"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- STEP 2: Payment -->
+      <div class="step-panel" id="panel-2">
+        <div class="field">
+          <label>Card Number</label>
+          <div class="card-input-wrap">
+            <input type="tel" id="cardNum" placeholder="1234 5678 9012 3456" maxlength="19" autocomplete="cc-number" oninput="formatCard(this)" inputmode="numeric"/>
+            <div class="card-icon">
+              <svg viewBox="0 0 36 22" fill="none"><rect width="36" height="22" rx="3" fill="#1A1F71"/><text x="5" y="15" font-family="Arial" font-size="9" font-weight="bold" fill="white">VISA</text></svg>
+            </div>
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label>Expiry</label>
+            <input type="tel" id="expiry" placeholder="MM / YY" maxlength="7" autocomplete="cc-exp" oninput="formatExpiry(this)" inputmode="numeric"/>
+          </div>
+          <div class="field">
+            <label>CVV</label>
+            <input type="tel" id="cvv" placeholder="123" maxlength="4" autocomplete="cc-csc" inputmode="numeric"/>
+          </div>
+        </div>
+        <div class="field">
+          <label>Name on Card</label>
+          <input type="text" id="cardName" placeholder="John Doe" autocomplete="cc-name"/>
+        </div>
+        <div class="secure-badge">
+          <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          256-bit SSL encrypted · Your payment info is never stored
+        </div>
+        <div class="modal-nav">
+          <button class="btn-back" onclick="goStep(1)">Back</button>
+          <button class="btn-next" onclick="goStep(3)">
+            Review Donation
+            <svg viewBox="0 0 18 18"><line x1="3" y1="9" x2="15" y2="9"/><polyline points="10,4 15,9 10,14"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- STEP 3: Confirm -->
+      <div class="step-panel" id="panel-3">
+        <div class="success-summary" id="reviewSummary"></div>
+        <div class="modal-nav">
+          <button class="btn-back" onclick="goStep(2)">Back</button>
+          <button class="btn-next btn-gold" onclick="submitDonation()">
+            Complete Donation
+            <svg viewBox="0 0 18 18"><polyline points="3,9 7,13 15,5"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- STEP 4: Success -->
+      <div class="step-panel" id="panel-4">
+        <div class="success-icon">
+          <svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
+        </div>
+        <h3 class="success-title">Thank You!</h3>
+        <p class="success-msg">Your gift is confirmed. A receipt has been sent to your email. Go Navy, Beat Army!</p>
+        <div class="success-summary" id="confirmSummary"></div>
+        <button class="btn-next" onclick="closeModal()">Close</button>
+      </div>
+
+    </div>
   </div>
 </div>
 
+
 <script>
-  /* ════════════════════════════════════════════════════
-     STRIPE PAYMENT LINKS CONFIG
-     ────────────────────────────────────────────────────
-     Replace every URL below with the real Payment Link
-     from your Stripe Dashboard (Payment Links → +New).
+  let currentStep = 1;
+  let donationContext = { tier:'', amount:'', freq:'', value:0 };
 
-     Setup checklist (one-time, in Stripe):
-     1. Create a Product + recurring Price for each tier/
-        frequency combo (e.g. "NWC Blue Monthly" → $25/mo).
-        Create one-time Prices for the one-time tiers.
-     2. Create a Payment Link for each Price, then paste
-        its URL below in place of the placeholder.
-     3. For "Give a Custom Amount", create ONE Payment Link
-        for a $1 one-time Price with "Adjustable quantity"
-        turned ON (min 1). We pass the dollar amount in as
-        the quantity via the prefilled_quantity URL param,
-        so a $137 gift becomes 137 × $1.
-     4. In Stripe Dashboard → Settings → Branding, upload
-        the NWC logo and set the navy/gold colors so
-        Checkout matches this page.
-     5. Set each Payment Link's "After payment" redirect to
-        a thank-you page (e.g. home.html or a new
-        thanks.html) so donors land somewhere friendly.
-  ════════════════════════════════════════════════════ */
-  /* ════════════════════════════════════════════════════
-     DONATION TRACKER — EASY UPDATE
-     ────────────────────────────────────────────────────
-     Change ONLY the two numbers below whenever fundraising
-     progress changes. The dollar labels, the bar fill, and
-     the percentage note all update themselves automatically
-     — no need to touch the width/animation values by hand.
-  ════════════════════════════════════════════════════ */
-  const FUNDRAISING = {
-    raised: 126000,
-    goal: 300000,
-    donorCount: 180
-  };
-
-  (function initProgressBar() {
-    const pct = Math.max(0, Math.min(100, Math.round((FUNDRAISING.raised / FUNDRAISING.goal) * 100)));
-    const fmt = n => '$' + n.toLocaleString('en-US');
-    document.getElementById('raisedAmt').textContent = fmt(FUNDRAISING.raised);
-    document.getElementById('goalAmt').textContent = fmt(FUNDRAISING.goal);
-    document.getElementById('heroGoalAmt').textContent = fmt(FUNDRAISING.goal);
-    document.getElementById('progressNote').textContent = pct + '% of goal reached — join ' + FUNDRAISING.donorCount + '+ donors';
-    requestAnimationFrame(() => {
-      document.getElementById('progressFill').style.width = pct + '%';
-    });
-  })();
-
-  const STRIPE_LINKS = {
-    monthly_blue:  'https://buy.stripe.com/test_aFabJ38jV82B4ktdNo6sw00',
-    monthly_gold:  'https://buy.stripe.com/test_aFa7sN6bN6Yx8AJ7p06sw01',
-    monthly_star:  'https://buy.stripe.com/test_14A8wRcAb0A92clgZA6sw02',
-    onetime_blue:  'https://buy.stripe.com/test_bJe6oJ0Rt2Ih3gp10C6sw03',
-    onetime_gold:  'https://buy.stripe.com/test_8x228t2ZB2Ih2cl6kW6sw04',
-    onetime_star:  'https://buy.stripe.com/test_fZu5kFbw7beN4ktaBc6sw05',
-    onetime_custom: 'https://buy.stripe.com/REPLACE_onetime_custom', // $1 price, adjustable quantity — still pending
-    monthly_custom: 'https://buy.stripe.com/test_3cI7sNcAb0A9dV38t46sw07'
-  };
-
-  function goToStripe(key) {
-    const url = STRIPE_LINKS[key];
-    if (!url || url.includes('REPLACE')) {
-      alert('This donation button isn\'t connected to Stripe yet. (Dev note: set STRIPE_LINKS["' + key + '"] to a real Stripe Payment Link URL.)');
-      return;
-    }
-    showRedirectOverlay();
-    window.location.href = url;
+  function openModal(tier, amount, freq, value) {
+    donationContext = { tier, amount, freq, value };
+    document.getElementById('modalTitle').textContent = tier;
+    document.getElementById('modalAmount').textContent = amount;
+    const toggleRow = document.getElementById('recurringToggleRow');
+    toggleRow.style.display = freq === 'onetime' ? 'flex' : 'none';
+    document.getElementById('recurringCheck').checked = (freq !== 'onetime');
+    goStep(1);
+    document.getElementById('modalOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+    // Scroll modal to top
+    setTimeout(() => { document.querySelector('.modal').scrollTop = 0; }, 10);
   }
 
-  function goToStripeCustom(inputId, linkKey) {
-    const input = document.getElementById(inputId);
-    const amt = parseInt(input.value, 10);
+  function openCustomModal() {
+    const inp = document.getElementById('customAmt');
+    const amt = parseInt(inp.value, 10);
     if (!amt || amt < 1) {
-      input.focus();
-      input.style.borderColor = '#dc2626';
-      input.addEventListener('input', () => { input.style.borderColor = ''; }, { once: true });
+      inp.focus();
+      inp.style.borderColor = '#dc2626';
+      inp.animate([
+        {transform:'translateX(-4px)'},{transform:'translateX(4px)'},
+        {transform:'translateX(-3px)'},{transform:'translateX(3px)'},
+        {transform:'translateX(0)'}
+      ], {duration:300, easing:'ease-out'});
+      inp.addEventListener('input', () => inp.style.borderColor = '', {once:true});
       return;
     }
-    const base = STRIPE_LINKS[linkKey];
-    if (!base || base.includes('REPLACE')) {
-      alert('Custom-amount giving isn\'t connected to Stripe yet. (Dev note: set STRIPE_LINKS["' + linkKey + '"] to a real $1, adjustable-quantity Payment Link.)');
-      return;
-    }
-    showRedirectOverlay();
-    const sep = base.includes('?') ? '&' : '?';
-    window.location.href = base + sep + 'prefilled_quantity=' + amt;
+    const cents = Math.round(amt * 100);
+    window.open('https://buy.stripe.com/8wM7ux3Yca7x0M000m?prefilled_amount=' + cents, '_blank');
   }
 
-  function showRedirectOverlay() {
-    document.getElementById('redirectOverlay').classList.add('open');
+  function closeModal() {
+    document.getElementById('modalOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function overlayClick(e) {
+    if (e.target === document.getElementById('modalOverlay')) closeModal();
+  }
+
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+  function goStep(n) {
+    if (n > currentStep) {
+      if (currentStep === 1 && !validateStep1()) return;
+      if (currentStep === 2 && !validateStep2()) return;
+    }
+    document.querySelectorAll('.step-panel').forEach(p => p.classList.remove('active'));
+    document.getElementById('panel-' + n).classList.add('active');
+    for (let i = 1; i <= 3; i++) {
+      const ind = document.getElementById('step-ind-' + i);
+      ind.classList.remove('active','done');
+      if (i < n) ind.classList.add('done');
+      else if (i === n) ind.classList.add('active');
+    }
+    for (let i = 1; i <= 2; i++) {
+      document.getElementById('line-' + i).classList.toggle('done', i < n);
+    }
+    if (n === 3) buildReview('reviewSummary');
+    currentStep = n;
+    document.querySelector('.modal').scrollTop = 0;
+  }
+
+  function validateStep1() {
+    const fn = document.getElementById('firstName').value.trim();
+    const ln = document.getElementById('lastName').value.trim();
+    const em = document.getElementById('email').value.trim();
+    if (!fn) { shake('firstName'); return false; }
+    if (!ln) { shake('lastName'); return false; }
+    if (!em || !em.includes('@')) { shake('email'); return false; }
+    return true;
+  }
+
+  function validateStep2() {
+    const cn = document.getElementById('cardNum').value.replace(/\s/g,'');
+    const ex = document.getElementById('expiry').value.trim();
+    const cv = document.getElementById('cvv').value.trim();
+    const nm = document.getElementById('cardName').value.trim();
+    if (cn.length < 13) { shake('cardNum'); return false; }
+    if (ex.length < 4)  { shake('expiry'); return false; }
+    if (cv.length < 3)  { shake('cvv'); return false; }
+    if (!nm)            { shake('cardName'); return false; }
+    return true;
+  }
+
+  function shake(id) {
+    const el = document.getElementById(id);
+    el.style.borderColor = '#dc2626';
+    el.focus();
+    el.animate([
+      {transform:'translateX(-4px)'},{transform:'translateX(4px)'},
+      {transform:'translateX(-3px)'},{transform:'translateX(3px)'},
+      {transform:'translateX(0)'}
+    ], {duration:300, easing:'ease-out'});
+    el.addEventListener('input', () => el.style.borderColor = '', {once:true});
+  }
+
+  function buildReview(targetId) {
+    const recurring = document.getElementById('recurringCheck').checked;
+    const isRecurring = (donationContext.freq !== 'onetime') || recurring;
+    const fn = document.getElementById('firstName').value.trim();
+    const ln = document.getElementById('lastName').value.trim();
+    const em = document.getElementById('email').value.trim();
+    const last4 = document.getElementById('cardNum').value.replace(/\s/g,'').slice(-4);
+    document.getElementById(targetId).innerHTML = `
+      <div class="summary-row"><span class="label">Donor</span><span class="value">${fn} ${ln}</span></div>
+      <div class="summary-row"><span class="label">Email</span><span class="value">${em}</span></div>
+      <div class="summary-row"><span class="label">Tier</span><span class="value">${donationContext.tier}</span></div>
+      <div class="summary-row"><span class="label">Amount</span><span class="value">${donationContext.amount}</span></div>
+      <div class="summary-row"><span class="label">Type</span><span class="value">${isRecurring ? 'Recurring (cancel anytime)' : 'One-time gift'}</span></div>
+      <div class="summary-row"><span class="label">Card</span><span class="value">···· ${last4}</span></div>
+    `;
+  }
+
+  function submitDonation() {
+    // ⬇️ REPLACE with your real payment processor call (Stripe, Donorbox, PayPal, etc.)
+    buildReview('confirmSummary');
+    goStep(4);
   }
 
   function setFreq(id, btn) {
@@ -876,13 +1154,58 @@
     btn.classList.add('active');
   }
 
-  function selectAmount(btn, amt, inputId, linkKey) {
-    btn.closest('.custom-section').querySelectorAll('.amount-btn').forEach(b => b.classList.remove('active'));
+  function selectAmount(btn, amt) {
+    document.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
-    document.getElementById(inputId).value = amt;
-    if (linkKey) goToStripeCustom(inputId, linkKey);
+    document.getElementById('customAmt').value = amt;
   }
 
+  function openCustomMonthlyModal() {
+    const inp = document.getElementById('monthlyCustomAmt');
+    const amt = parseInt(inp.value, 10);
+    if (!amt || amt < 1) {
+      inp.focus();
+      inp.style.borderColor = '#dc2626';
+      inp.animate([
+        {transform:'translateX(-4px)'},{transform:'translateX(4px)'},
+        {transform:'translateX(-3px)'},{transform:'translateX(3px)'},
+        {transform:'translateX(0)'}
+      ], {duration:300, easing:'ease-out'});
+      inp.addEventListener('input', () => inp.style.borderColor = '', {once:true});
+      return;
+    }
+    // Stripe does not support prefilled_amount on recurring links — open directly
+    window.open('https://buy.stripe.com/00geWZ66k0wX0M014r', '_blank');
+  }
+
+    function formatCard(el) {
+    let v = el.value.replace(/\D/g,'').substring(0,16);
+    el.value = v.replace(/(.{4})/g,'$1 ').trim();
+  }
+  function openCtaCustomModal() {
+    const inp = document.getElementById('ctaCustomAmt');
+    const amt = parseInt(inp.value, 10);
+    if (!amt || amt < 1) {
+      inp.focus();
+      inp.style.color = '#dc2626';
+      inp.animate([
+        {transform:'translateX(-4px)'},{transform:'translateX(4px)'},
+        {transform:'translateX(-3px)'},{transform:'translateX(3px)'},
+        {transform:'translateX(0)'}
+      ], {duration:300, easing:'ease-out'});
+      inp.addEventListener('input', () => inp.style.color = 'var(--navy)', {once:true});
+      return;
+    }
+    // Pass amount in cents as prefilled_amount to Stripe
+    const cents = amt * 100;
+    window.open('https://buy.stripe.com/8wM7ux3Yca7x0M000m?prefilled_amount=' + cents, '_blank');
+  }
+
+    function formatExpiry(el) {
+    let v = el.value.replace(/\D/g,'').substring(0,4);
+    if (v.length >= 3) v = v.substring(0,2) + ' / ' + v.substring(2);
+    el.value = v;
+  }
 </script>
 </body>
 </html>

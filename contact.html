@@ -120,6 +120,8 @@
   .btn-secondary { padding:12px 28px; background:none; color:var(--navy); border:2px solid var(--navy); border-radius:8px; font-family:'Oswald',sans-serif; font-size:15px; letter-spacing:2px; text-transform:uppercase; cursor:pointer; transition:background 0.2s,color 0.2s; text-decoration:none; display:inline-block; min-height:48px; line-height:24px; }
   .btn-secondary:hover { background:var(--navy); color:var(--white); }
 
+  .success-banner { display:none; background:#d1fae5; border:1px solid #6ee7b7; border-radius:10px; padding:18px 22px; margin-bottom:20px; font-family:'Oswald',sans-serif; color:#065f46; letter-spacing:1px; text-transform:uppercase; font-size:15px; text-align:center; }
+
   /* FOOTER */
   .site-footer { background:var(--navy); color:rgba(255,255,255,0.7); padding:36px 16px 24px; }
   .footer-inner { max-width:900px; margin:0 auto; display:flex; flex-wrap:wrap; justify-content:space-between; gap:24px; }
@@ -181,10 +183,9 @@
 
     <div class="contact-grid">
       <div class="form-card">
-        <!-- Static mailto form: replace REPLACE_WITH_EMAIL with the
-             Club's real inbox address. For a no-email-client-popup
-             experience, swap this card for Weebly's native Form element. -->
-        <form action="mailto:REPLACE_WITH_EMAIL@navywrestlingclub.com" method="post" enctype="text/plain">
+        <div class="success-banner" id="successBanner">✓ Message received — we'll be in touch soon!</div>
+        <form name="contact" method="POST" data-netlify="true" action="contact.html?sent=1">
+          <input type="hidden" name="form-name" value="contact"/>
           <div class="field-row">
             <div class="field">
               <label>First Name *</label>
@@ -285,5 +286,11 @@
   <p class="footer-note">The Navy Wrestling Club is a 501(c)(3) nonprofit organization. Contributions are tax-deductible to the extent permitted by law.</p>
 </footer>
 
+<script>
+  if (new URLSearchParams(window.location.search).get('sent') === '1') {
+    document.getElementById('successBanner').style.display = 'block';
+    window.scrollTo(0, document.getElementById('successBanner').offsetTop - 100);
+  }
+</script>
 </body>
 </html>
