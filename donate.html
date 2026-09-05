@@ -365,8 +365,8 @@
     .cta-onetime-btn:hover { background: var(--navy-mid); }
 
     /* ── FOOTER ───────────────────────────────────── */
-    .footer-note { text-align: center; padding: 20px 16px; font-size: 13px; color: var(--gray); border-top: 1px solid var(--border); background: var(--white); }
-    .footer-note a { color: var(--navy); }
+    .footer-note { text-align: center; padding: 20px 16px; font-size: 13px; color: rgba(255,255,255,0.5); border-top: 1px solid rgba(255,255,255,0.12); background: var(--navy); }
+    .footer-note a { color: rgba(255,255,255,0.7); }
 
     /* ══════════════════════════════════════════════
        PAYMENT MODAL
@@ -570,7 +570,7 @@
   }
 
   /* FOOTER */
-  .site-footer { background:var(--navy); color:rgba(255,255,255,0.7); padding:36px 16px 24px; }
+  .site-footer {  background:var(--navy); color:rgba(255,255,255,0.7); padding:36px 16px 24px; }
   .footer-inner { max-width:900px; margin:0 auto; display:flex; flex-wrap:wrap; justify-content:space-between; gap:24px; }
   .footer-col h5 { font-family:'Oswald',sans-serif; font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--gold); margin-bottom:10px; }
   .footer-col a { display:block; color:rgba(255,255,255,0.7); text-decoration:none; font-size:14px; margin-bottom:6px; }
@@ -579,7 +579,24 @@
   .footer-social a { width:34px; height:34px; border-radius:50%; background:rgba(255,255,255,0.08); display:flex; align-items:center; justify-content:center; }
   .footer-social svg { width:16px; height:16px; stroke:var(--white); fill:none; stroke-width:1.8; }
   .footer-note { text-align:center; padding-top:24px; margin-top:24px; border-top:1px solid rgba(255,255,255,0.12); font-size:12px; color:rgba(255,255,255,0.5); }
-  </style>
+  
+
+
+
+  /* ── MOBILE ── */
+  @media (max-width:640px) {
+    .nwc-nav-inner { flex-wrap:wrap; padding:8px 14px; }
+    .nwc-logo { flex:1; }
+    .nav-toggle { margin-left:auto; }
+    .nwc-links { order:3; width:100%; }
+    .nwc-links.open { display:flex; }
+    .footer-inner { flex-direction:column; gap:20px; }
+    .footer-col { min-width:unset; width:100%; }
+  }
+  @media (max-width:480px) {
+    input, textarea, select { font-size:16px; }
+  }
+</style>
 </head>
 <body>
 <!-- ═══ NAV ═══ -->
@@ -1036,7 +1053,7 @@
     document.getElementById('recurringCheck').checked = (freq !== 'onetime');
     goStep(1);
     document.getElementById('modalOverlay').classList.add('open');
-    document.body.style.overflow = 'hidden';
+    document.body.style.overflow = 'hidden'; document.documentElement.style.overflow = 'hidden';
     // Scroll modal to top
     setTimeout(() => { document.querySelector('.modal').scrollTop = 0; }, 10);
   }
@@ -1061,7 +1078,7 @@
 
   function closeModal() {
     document.getElementById('modalOverlay').classList.remove('open');
-    document.body.style.overflow = '';
+    document.body.style.overflow = ''; document.documentElement.style.overflow = '';
   }
 
   function overlayClick(e) {
