@@ -76,7 +76,7 @@
     .progress-track { background: rgba(255,255,255,0.15); border-radius: 99px; height: 10px; overflow: hidden; }
     .progress-fill {
       background: linear-gradient(90deg, var(--gold), var(--gold-lt));
-      height: 100%; width: 63%; border-radius: 99px;
+      height: 100%; width: 42%; border-radius: 99px;
       animation: fillBar 1.4s ease-out forwards;
     }
     @keyframes fillBar { from { width: 0 } to { width: 42% } }
@@ -365,8 +365,8 @@
     .cta-onetime-btn:hover { background: var(--navy-mid); }
 
     /* ── FOOTER ───────────────────────────────────── */
-    .footer-note { text-align: center; padding: 20px 16px; font-size: 13px; color: rgba(255,255,255,0.5); border-top: 1px solid rgba(255,255,255,0.12); background: var(--navy); }
-    .footer-note a { color: rgba(255,255,255,0.7); }
+    .footer-note { text-align: center; padding: 20px 16px; font-size: 13px; color: var(--gray); border-top: 1px solid var(--border); background: var(--white); }
+    .footer-note a { color: var(--navy); }
 
     /* ══════════════════════════════════════════════
        PAYMENT MODAL
@@ -544,7 +544,7 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .progress-fill { animation: none; width: 63%; }
+      .progress-fill { animation: none; width: 42%; }
       * { transition: none !important; animation: none !important; }
     }
 
@@ -570,7 +570,7 @@
   }
 
   /* FOOTER */
-  .site-footer {  background:var(--navy); color:rgba(255,255,255,0.7); padding:36px 16px 24px; }
+  .site-footer { background:var(--navy); color:rgba(255,255,255,0.7); padding:36px 16px 24px; }
   .footer-inner { max-width:900px; margin:0 auto; display:flex; flex-wrap:wrap; justify-content:space-between; gap:24px; }
   .footer-col h5 { font-family:'Oswald',sans-serif; font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--gold); margin-bottom:10px; }
   .footer-col a { display:block; color:rgba(255,255,255,0.7); text-decoration:none; font-size:14px; margin-bottom:6px; }
@@ -579,24 +579,15 @@
   .footer-social a { width:34px; height:34px; border-radius:50%; background:rgba(255,255,255,0.08); display:flex; align-items:center; justify-content:center; }
   .footer-social svg { width:16px; height:16px; stroke:var(--white); fill:none; stroke-width:1.8; }
   .footer-note { text-align:center; padding-top:24px; margin-top:24px; border-top:1px solid rgba(255,255,255,0.12); font-size:12px; color:rgba(255,255,255,0.5); }
-  
-
-
-
-  /* ── MOBILE ── */
-  @media (max-width:640px) {
-    .nwc-nav-inner { flex-wrap:wrap; padding:8px 14px; }
-    .nwc-logo { flex:1; }
-    .nav-toggle { margin-left:auto; }
-    .nwc-links { order:3; width:100%; }
-    .nwc-links.open { display:flex; }
-    .footer-inner { flex-direction:column; gap:20px; }
-    .footer-col { min-width:unset; width:100%; }
-  }
-  @media (max-width:480px) {
-    input, textarea, select { font-size:16px; }
-  }
-</style>
+  </style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q4GVLX3HEZ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-Q4GVLX3HEZ');
+</script>
 </head>
 <body>
 <!-- ═══ NAV ═══ -->
@@ -626,14 +617,14 @@
 <section class="hero">
   <p class="hero-eyebrow">Navy Wrestling Club · Est. 2014</p>
   <h1>Fuel the <span>Fight</span></h1>
-  <p class="hero-sub">Your support sends Midshipmen to the mat — and beyond. Help us hit our $200,000 goal this season.</p>
+  <p class="hero-sub">Your support sends Midshipmen to the mat — and beyond. Help us hit our $300,000 goal this season.</p>
   <div class="progress-wrap">
     <div class="progress-labels">
       <span><strong>$126,000</strong> raised</span>
-      <span>Goal: <strong>$200,000</strong></span>
+      <span>Goal: <strong>$300,000</strong></span>
     </div>
     <div class="progress-track"><div class="progress-fill"></div></div>
-    <p class="progress-note">63% of goal reached — join 180+ donors</p>
+    <p class="progress-note">42% of goal reached — join 180+ donors</p>
   </div>
 </section>
 
@@ -650,7 +641,7 @@
     </div>
     <div class="impact-stat">
       <strong>100%</strong>
-      <span>Goes directly to Navy Wrestling</span>
+      <span>Goes directly to the program</span>
     </div>
   </div>
 </div>
@@ -755,7 +746,7 @@
               <li>Premium NWC gear package</li>
               <li>Personal thank-you letter from the program</li>
             </ul>
-            <button class="tier-cta" onclick="window.open('https://buy.stripe.com/3cI7sN0Rt1Ed8AJbFg6sw0z','_blank')">Give $1,200</button>
+            <button class="tier-cta" onclick="window.open('https://buy.stripe.com/4gw1691Q43J93Yc28k','_blank')">Give $1,200</button>
           </div>
         </div>
         <div class="custom-section">
@@ -885,8 +876,8 @@
       <h5>More</h5>
       <a href="newsletter.html">Join Our Newsletter</a>
       <a href="https://schmee-com.myshopify.com/collections/navy-wrestling" target="_blank" rel="noopener">Shop Navy Wrestling</a>
-      <a href="https://www.flickr.com/photos/200442556@N08/albums" target="_blank" rel="noopener">Photo Archive</a>
-      <a href="https://www.youtube.com/@navywrestlingclub" target="_blank" rel="noopener">Video Archive</a>
+      <a href="https://www.navywrestlingclub.com/photo-archive.html" target="_blank" rel="noopener">Photo Archive</a>
+      <a href="https://www.navywrestlingclub.com/archive.html" target="_blank" rel="noopener">Video Archive</a>
     </div>
     <div class="footer-col">
       <h5>Connect</h5>
@@ -894,7 +885,6 @@
         <a href="https://www.facebook.com/NavyWC" aria-label="Facebook" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
         <a href="https://twitter.com/NavyWC" aria-label="X / Twitter" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M4 4l16 16M20 4L4 20"/></svg></a>
         <a href="https://www.instagram.com/navywrestlingclub/" aria-label="Instagram" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
-        <a href="https://www.youtube.com/@navywrestlingclub" aria-label="YouTube" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="16" height="16" stroke="white" fill="none" stroke-width="1.8"><rect x="2" y="7" width="20" height="15" rx="2"/><polygon points="10,10 17,14.5 10,19" fill="white" stroke="none"/></svg></a>
       </div>
     </div>
   </div>
@@ -1053,7 +1043,7 @@
     document.getElementById('recurringCheck').checked = (freq !== 'onetime');
     goStep(1);
     document.getElementById('modalOverlay').classList.add('open');
-    document.body.style.overflow = 'hidden'; document.documentElement.style.overflow = 'hidden';
+    document.body.style.overflow = 'hidden';
     // Scroll modal to top
     setTimeout(() => { document.querySelector('.modal').scrollTop = 0; }, 10);
   }
@@ -1078,7 +1068,7 @@
 
   function closeModal() {
     document.getElementById('modalOverlay').classList.remove('open');
-    document.body.style.overflow = ''; document.documentElement.style.overflow = '';
+    document.body.style.overflow = '';
   }
 
   function overlayClick(e) {
