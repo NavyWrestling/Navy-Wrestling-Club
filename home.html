@@ -308,5 +308,40 @@
   <p class="footer-note">The Navy Wrestling Club is a 501(c)(3) nonprofit organization. Contributions are tax-deductible to the extent permitted by law.</p>
 </footer>
 
+<!-- DONATION POP-UP -->
+<div id="donationPopup" style="display:none; position:fixed; inset:0; z-index:9999; background:rgba(0,0,0,0.65); align-items:center; justify-content:center; padding:20px;">
+  <div style="background:#0a1628; border:2px solid #C8A84B; border-radius:16px; max-width:420px; width:100%; padding:36px 32px; position:relative; text-align:center; box-shadow:0 20px 60px rgba(0,0,0,0.5);">
+    <button onclick="closePopup()" style="position:absolute; top:14px; right:16px; background:none; border:none; color:rgba(255,255,255,0.5); font-size:22px; cursor:pointer; line-height:1;">&times;</button>
+    <p style="font-family:'Oswald',sans-serif; font-size:11px; letter-spacing:3px; text-transform:uppercase; color:#C8A84B; margin:0 0 10px;">Fall Campaign</p>
+    <h2 style="font-family:'Oswald',sans-serif; font-size:28px; color:#ffffff; margin:0 0 8px; line-height:1.2;">Help Us Reach $200K</h2>
+    <p style="font-family:'Source Sans 3',sans-serif; font-size:15px; color:rgba(255,255,255,0.7); margin:0 0 20px;">Every gift goes directly to supporting Navy Wrestling. We're 63% of the way there — help us finish strong.</p>
+    <!-- Progress bar -->
+    <div style="background:rgba(255,255,255,0.1); border-radius:999px; height:10px; margin:0 0 6px; overflow:hidden;">
+      <div style="background:#C8A84B; width:63%; height:100%; border-radius:999px;"></div>
+    </div>
+    <p style="font-family:'Source Sans 3',sans-serif; font-size:13px; color:rgba(255,255,255,0.5); margin:0 0 24px;">$126,000 raised of $200,000 goal</p>
+    <a href="donate.html" onclick="closePopup()" style="display:block; background:#C8A84B; color:#0a1628; font-family:'Oswald',sans-serif; font-size:15px; letter-spacing:2px; text-transform:uppercase; text-decoration:none; padding:14px 24px; border-radius:8px; font-weight:600; margin-bottom:12px;">Donate Now</a>
+    <button onclick="closePopup()" style="background:none; border:none; color:rgba(255,255,255,0.4); font-family:'Source Sans 3',sans-serif; font-size:13px; cursor:pointer; text-decoration:underline;">No thanks, continue to site</button>
+  </div>
+</div>
+<script>
+  (function() {
+    // Only show once per session
+    if (!sessionStorage.getItem('nwc_popup_shown')) {
+      setTimeout(function() {
+        var popup = document.getElementById('donationPopup');
+        popup.style.display = 'flex';
+        sessionStorage.setItem('nwc_popup_shown', '1');
+      }, 5000);
+    }
+  })();
+  function closePopup() {
+    document.getElementById('donationPopup').style.display = 'none';
+  }
+  // Close on backdrop click
+  document.getElementById('donationPopup').addEventListener('click', function(e) {
+    if (e.target === this) closePopup();
+  });
+</script>
 </body>
 </html>
