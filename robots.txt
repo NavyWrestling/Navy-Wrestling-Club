@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://navywrestlingclub.com/sitemap.xml
