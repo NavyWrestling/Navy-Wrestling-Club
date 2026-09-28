@@ -79,7 +79,7 @@
       height: 100%; width: 63%; border-radius: 99px;
       animation: fillBar 1.4s ease-out forwards;
     }
-    @keyframes fillBar { from { width: 0 } to { width: 42% } }
+    @keyframes fillBar { from { width: 0 } to { width: 63% } }
     .progress-note { text-align: center; font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 8px; }
 
     /* ── CONTAINER ────────────────────────────────── */
@@ -368,154 +368,6 @@
     .footer-note { text-align: center; padding: 20px 16px; font-size: 13px; color: rgba(255,255,255,0.5); border-top: 1px solid rgba(255,255,255,0.12); background: var(--navy); }
     .footer-note a { color: rgba(255,255,255,0.7); }
 
-    /* ══════════════════════════════════════════════
-       PAYMENT MODAL
-    ══════════════════════════════════════════════ */
-    .modal-overlay {
-      display: none; position: fixed; inset: 0; z-index: 1000;
-      background: rgba(10,31,68,0.65); backdrop-filter: blur(4px);
-      align-items: flex-end; justify-content: center;
-      padding: 0;
-    }
-    .modal-overlay.open { display: flex; }
-
-    .modal {
-      background: var(--white); width: 100%; max-width: 520px;
-      max-height: 92vh; overflow-y: auto;
-      border-radius: 20px 20px 0 0;
-      box-shadow: 0 -8px 48px rgba(10,31,68,0.25);
-      animation: slideUp 0.28s cubic-bezier(0.32,0.72,0,1);
-    }
-    @keyframes slideUp { from { transform: translateY(100%) } to { transform: translateY(0) } }
-
-    /* On wider screens, center it as a dialog */
-    @media (min-width: 600px) {
-      .modal-overlay { align-items: center; padding: 20px; }
-      .modal { border-radius: 16px; animation: modalIn 0.22s ease-out; }
-      @keyframes modalIn { from { opacity:0; transform: scale(0.97) translateY(8px) } to { opacity:1; transform: none } }
-    }
-
-    .modal-header {
-      background: var(--navy); padding: 20px 20px 16px;
-      display: flex; align-items: flex-start; justify-content: space-between;
-      position: sticky; top: 0; z-index: 2;
-      border-radius: 20px 20px 0 0;
-    }
-    @media (min-width: 600px) { .modal-header { border-radius: 16px 16px 0 0; } }
-
-    .modal-eyebrow { font-family: 'Oswald', sans-serif; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 3px; }
-    .modal-title { font-family: 'Oswald', sans-serif; font-size: 22px; font-weight: 700; color: var(--white); text-transform: uppercase; line-height: 1.1; }
-    .modal-amount { font-family: 'Oswald', sans-serif; font-size: 16px; color: rgba(255,255,255,0.65); margin-top: 3px; }
-    .modal-close {
-      background: rgba(255,255,255,0.12); border: none; border-radius: 8px;
-      color: var(--white); cursor: pointer; padding: 8px; line-height: 0;
-      transition: background 0.2s; flex-shrink: 0; min-width: 40px; min-height: 40px;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .modal-close:hover { background: rgba(255,255,255,0.22); }
-    .modal-close svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2.5; stroke-linecap: round; }
-
-    .modal-body { padding: 20px; }
-
-    /* Steps */
-    .steps { display: flex; align-items: center; margin-bottom: 24px; }
-    .step { display: flex; align-items: center; gap: 6px; }
-    .step-num {
-      width: 26px; height: 26px; border-radius: 50%; border: 2px solid var(--border);
-      display: flex; align-items: center; justify-content: center;
-      font-family: 'Oswald', sans-serif; font-size: 12px; color: var(--gray);
-      flex-shrink: 0; transition: all 0.2s;
-    }
-    .step.active .step-num { background: var(--navy); border-color: var(--navy); color: var(--white); }
-    .step.done .step-num { background: var(--gold); border-color: var(--gold); color: var(--navy); }
-    .step-label { font-size: 12px; color: var(--gray); white-space: nowrap; }
-    .step.active .step-label { color: var(--navy); font-weight: 600; }
-    .step-line { flex: 1; height: 2px; background: var(--border); margin: 0 6px; }
-    .step-line.done { background: var(--gold); }
-
-    /* Step panels */
-    .step-panel { display: none; }
-    .step-panel.active { display: block; }
-
-    /* Form fields */
-    .field { margin-bottom: 14px; }
-    .field label { display: block; font-size: 13px; font-weight: 600; color: var(--navy); margin-bottom: 5px; }
-    .field input, .field select {
-      width: 100%; padding: 12px 13px; border: 2px solid var(--border); border-radius: 8px;
-      font-family: 'Source Sans 3', sans-serif; font-size: 16px; color: var(--text);
-      outline: none; transition: border-color 0.2s; background: var(--white);
-      min-height: 48px; -webkit-appearance: none;
-    }
-    .field input:focus, .field select:focus { border-color: var(--navy); }
-    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-
-    /* Card icon */
-    .card-input-wrap { position: relative; }
-    .card-input-wrap input { padding-right: 52px; }
-    .card-icon { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); }
-    .card-icon svg { width: 28px; height: 18px; }
-
-    /* Secure badge */
-    .secure-badge {
-      display: flex; align-items: center; gap: 8px;
-      font-size: 12px; color: var(--gray); margin-top: 16px;
-      padding-top: 14px; border-top: 1px solid var(--border);
-    }
-    .secure-badge svg { width: 14px; height: 14px; stroke: var(--gray); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
-
-    /* Recurring toggle */
-    .toggle-row {
-      display: flex; align-items: center; justify-content: space-between;
-      background: var(--offwhite); border-radius: 10px; padding: 13px 14px; margin-bottom: 18px;
-      gap: 12px;
-    }
-    .toggle-info h4 { font-family: 'Oswald', sans-serif; font-size: 14px; text-transform: uppercase; color: var(--navy); margin-bottom: 2px; }
-    .toggle-info p { font-size: 12px; color: var(--gray); }
-    .toggle { position: relative; width: 44px; height: 24px; flex-shrink: 0; }
-    .toggle input { opacity: 0; width: 0; height: 0; position: absolute; }
-    .toggle-slider { position: absolute; inset: 0; background: var(--border); border-radius: 99px; cursor: pointer; transition: background 0.2s; }
-    .toggle-slider::before {
-      content: ''; position: absolute; width: 18px; height: 18px;
-      background: var(--white); border-radius: 50%; left: 3px; top: 3px;
-      transition: transform 0.2s; box-shadow: 0 1px 3px rgba(0,0,0,0.2);
-    }
-    .toggle input:checked + .toggle-slider { background: var(--navy); }
-    .toggle input:checked + .toggle-slider::before { transform: translateX(20px); }
-
-    /* Summary */
-    .success-icon {
-      width: 56px; height: 56px; background: #ecfdf5; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center; margin: 0 auto 16px;
-    }
-    .success-icon svg { width: 28px; height: 28px; stroke: #16a34a; fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
-    .success-title { font-family: 'Oswald', sans-serif; font-size: 24px; text-transform: uppercase; color: var(--navy); text-align: center; margin-bottom: 6px; }
-    .success-msg { font-size: 14px; color: var(--gray); text-align: center; max-width: 340px; margin: 0 auto 20px; }
-    .success-summary { background: var(--offwhite); border-radius: 10px; padding: 14px 16px; margin-bottom: 20px; }
-    .summary-row { display: flex; justify-content: space-between; font-size: 13px; padding: 4px 0; gap: 8px; }
-    .summary-row .label { color: var(--gray); }
-    .summary-row .value { color: var(--navy); font-weight: 600; text-align: right; }
-
-    /* Nav buttons */
-    .modal-nav { display: flex; gap: 10px; margin-top: 20px; }
-    .btn-back {
-      flex: 0 0 auto; padding: 12px 18px; background: none; border: 2px solid var(--border);
-      border-radius: 8px; font-family: 'Oswald', sans-serif; font-size: 13px; letter-spacing: 1px;
-      text-transform: uppercase; color: var(--gray); cursor: pointer; transition: border-color 0.2s, color 0.2s;
-      min-height: 48px;
-    }
-    .btn-back:hover { border-color: var(--navy); color: var(--navy); }
-    .btn-next {
-      flex: 1; padding: 13px; background: var(--navy); color: var(--white); border: none;
-      border-radius: 8px; font-family: 'Oswald', sans-serif; font-size: 15px; letter-spacing: 2px;
-      text-transform: uppercase; cursor: pointer; transition: opacity 0.2s;
-      display: flex; align-items: center; justify-content: center; gap: 8px;
-      min-height: 48px; touch-action: manipulation;
-    }
-    .btn-next:hover { opacity: 0.88; }
-    .btn-next svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
-    .btn-gold { background: var(--gold); color: var(--navy); }
-    .btn-gold:hover { opacity: 0.9; }
-
     /* ── MOBILE OVERRIDES ─────────────────────────── */
     @media (max-width: 480px) {
       /* Impact strip stacks */
@@ -537,10 +389,6 @@
       /* Custom amount input fills row */
       .custom-input-wrap { flex-direction: column; }
       .donate-now-btn { width: 100%; }
-
-      /* Modal nav */
-      .modal-nav { flex-direction: column; }
-      .btn-back { width: 100%; text-align: center; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -896,160 +744,17 @@
 
 
 
-<!-- ═══════════════════════════════════════════════════
-     PAYMENT MODAL
-═══════════════════════════════════════════════════ -->
-<div class="modal-overlay" id="modalOverlay" onclick="overlayClick(event)">
-  <div class="modal">
-
-    <div class="modal-header">
-      <div>
-        <p class="modal-eyebrow">Navy Wrestling Club</p>
-        <h3 class="modal-title" id="modalTitle">Gold</h3>
-        <p class="modal-amount" id="modalAmount">$50 / month</p>
-      </div>
-      <button class="modal-close" onclick="closeModal()" aria-label="Close">
-        <svg viewBox="0 0 18 18"><line x1="2" y1="2" x2="16" y2="16"/><line x1="16" y1="2" x2="2" y2="16"/></svg>
-      </button>
-    </div>
-
-    <div class="modal-body">
-
-      <!-- Step Indicator -->
-      <div class="steps">
-        <div class="step active" id="step-ind-1">
-          <div class="step-num">1</div>
-          <span class="step-label">Your Info</span>
-        </div>
-        <div class="step-line" id="line-1"></div>
-        <div class="step" id="step-ind-2">
-          <div class="step-num">2</div>
-          <span class="step-label">Payment</span>
-        </div>
-        <div class="step-line" id="line-2"></div>
-        <div class="step" id="step-ind-3">
-          <div class="step-num">3</div>
-          <span class="step-label">Confirm</span>
-        </div>
-      </div>
-
-      <!-- STEP 1: Personal Info -->
-      <div class="step-panel active" id="panel-1">
-        <div class="field-row">
-          <div class="field">
-            <label>First Name</label>
-            <input type="text" id="firstName" placeholder="John" autocomplete="given-name"/>
-          </div>
-          <div class="field">
-            <label>Last Name</label>
-            <input type="text" id="lastName" placeholder="Doe" autocomplete="family-name"/>
-          </div>
-        </div>
-        <div class="field">
-          <label>Email Address</label>
-          <input type="email" id="email" placeholder="john@example.com" autocomplete="email"/>
-        </div>
-        <div class="toggle-row" id="recurringToggleRow">
-          <div class="toggle-info">
-            <h4>Make it recurring</h4>
-            <p>Maximize your impact — cancel anytime</p>
-          </div>
-          <label class="toggle">
-            <input type="checkbox" id="recurringCheck" checked/>
-            <span class="toggle-slider"></span>
-          </label>
-        </div>
-        <div class="modal-nav">
-          <button class="btn-next" onclick="goStep(2)">
-            Continue to Payment
-            <svg viewBox="0 0 18 18"><line x1="3" y1="9" x2="15" y2="9"/><polyline points="10,4 15,9 10,14"/></svg>
-          </button>
-        </div>
-      </div>
-
-      <!-- STEP 2: Payment -->
-      <div class="step-panel" id="panel-2">
-        <div class="field">
-          <label>Card Number</label>
-          <div class="card-input-wrap">
-            <input type="tel" id="cardNum" placeholder="1234 5678 9012 3456" maxlength="19" autocomplete="cc-number" oninput="formatCard(this)" inputmode="numeric"/>
-            <div class="card-icon">
-              <svg viewBox="0 0 36 22" fill="none"><rect width="36" height="22" rx="3" fill="#1A1F71"/><text x="5" y="15" font-family="Arial" font-size="9" font-weight="bold" fill="white">VISA</text></svg>
-            </div>
-          </div>
-        </div>
-        <div class="field-row">
-          <div class="field">
-            <label>Expiry</label>
-            <input type="tel" id="expiry" placeholder="MM / YY" maxlength="7" autocomplete="cc-exp" oninput="formatExpiry(this)" inputmode="numeric"/>
-          </div>
-          <div class="field">
-            <label>CVV</label>
-            <input type="tel" id="cvv" placeholder="123" maxlength="4" autocomplete="cc-csc" inputmode="numeric"/>
-          </div>
-        </div>
-        <div class="field">
-          <label>Name on Card</label>
-          <input type="text" id="cardName" placeholder="John Doe" autocomplete="cc-name"/>
-        </div>
-        <div class="secure-badge">
-          <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-          256-bit SSL encrypted · Your payment info is never stored
-        </div>
-        <div class="modal-nav">
-          <button class="btn-back" onclick="goStep(1)">Back</button>
-          <button class="btn-next" onclick="goStep(3)">
-            Review Donation
-            <svg viewBox="0 0 18 18"><line x1="3" y1="9" x2="15" y2="9"/><polyline points="10,4 15,9 10,14"/></svg>
-          </button>
-        </div>
-      </div>
-
-      <!-- STEP 3: Confirm -->
-      <div class="step-panel" id="panel-3">
-        <div class="success-summary" id="reviewSummary"></div>
-        <div class="modal-nav">
-          <button class="btn-back" onclick="goStep(2)">Back</button>
-          <button class="btn-next btn-gold" onclick="submitDonation()">
-            Complete Donation
-            <svg viewBox="0 0 18 18"><polyline points="3,9 7,13 15,5"/></svg>
-          </button>
-        </div>
-      </div>
-
-      <!-- STEP 4: Success -->
-      <div class="step-panel" id="panel-4">
-        <div class="success-icon">
-          <svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
-        </div>
-        <h3 class="success-title">Thank You!</h3>
-        <p class="success-msg">Your gift is confirmed. A receipt has been sent to your email. Go Navy, Beat Army!</p>
-        <div class="success-summary" id="confirmSummary"></div>
-        <button class="btn-next" onclick="closeModal()">Close</button>
-      </div>
-
-    </div>
-  </div>
-</div>
-
-
 <script>
-  let currentStep = 1;
-  let donationContext = { tier:'', amount:'', freq:'', value:0 };
-
-  function openModal(tier, amount, freq, value) {
-    donationContext = { tier, amount, freq, value };
-    document.getElementById('modalTitle').textContent = tier;
-    document.getElementById('modalAmount').textContent = amount;
-    const toggleRow = document.getElementById('recurringToggleRow');
-    toggleRow.style.display = freq === 'onetime' ? 'flex' : 'none';
-    document.getElementById('recurringCheck').checked = (freq !== 'onetime');
-    goStep(1);
-    document.getElementById('modalOverlay').classList.add('open');
-    document.body.style.overflow = 'hidden';
-    // Scroll modal to top
-    setTimeout(() => { document.querySelector('.modal').scrollTop = 0; }, 10);
-  }
+  // Google Analytics: record a donate_click every time a Stripe checkout opens
+  (function () {
+    var origOpen = window.open;
+    window.open = function (url) {
+      if (typeof url === 'string' && url.indexOf('stripe.com') > -1 && typeof gtag === 'function') {
+        gtag('event', 'donate_click', { link_url: url, transport_type: 'beacon' });
+      }
+      return origOpen.apply(window, arguments);
+    };
+  })();
 
   function openCustomModal() {
     const inp = document.getElementById('customAmt');
@@ -1068,109 +773,17 @@
     const cents = Math.round(amt * 100);
     window.open('https://buy.stripe.com/8wM7ux3Yca7x0M000m?prefilled_amount=' + cents, '_blank');
   }
-
-  function closeModal() {
-    document.getElementById('modalOverlay').classList.remove('open');
-    document.body.style.overflow = '';
-  }
-
-  function overlayClick(e) {
-    if (e.target === document.getElementById('modalOverlay')) closeModal();
-  }
-
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
-
-  function goStep(n) {
-    if (n > currentStep) {
-      if (currentStep === 1 && !validateStep1()) return;
-      if (currentStep === 2 && !validateStep2()) return;
-    }
-    document.querySelectorAll('.step-panel').forEach(p => p.classList.remove('active'));
-    document.getElementById('panel-' + n).classList.add('active');
-    for (let i = 1; i <= 3; i++) {
-      const ind = document.getElementById('step-ind-' + i);
-      ind.classList.remove('active','done');
-      if (i < n) ind.classList.add('done');
-      else if (i === n) ind.classList.add('active');
-    }
-    for (let i = 1; i <= 2; i++) {
-      document.getElementById('line-' + i).classList.toggle('done', i < n);
-    }
-    if (n === 3) buildReview('reviewSummary');
-    currentStep = n;
-    document.querySelector('.modal').scrollTop = 0;
-  }
-
-  function validateStep1() {
-    const fn = document.getElementById('firstName').value.trim();
-    const ln = document.getElementById('lastName').value.trim();
-    const em = document.getElementById('email').value.trim();
-    if (!fn) { shake('firstName'); return false; }
-    if (!ln) { shake('lastName'); return false; }
-    if (!em || !em.includes('@')) { shake('email'); return false; }
-    return true;
-  }
-
-  function validateStep2() {
-    const cn = document.getElementById('cardNum').value.replace(/\s/g,'');
-    const ex = document.getElementById('expiry').value.trim();
-    const cv = document.getElementById('cvv').value.trim();
-    const nm = document.getElementById('cardName').value.trim();
-    if (cn.length < 13) { shake('cardNum'); return false; }
-    if (ex.length < 4)  { shake('expiry'); return false; }
-    if (cv.length < 3)  { shake('cvv'); return false; }
-    if (!nm)            { shake('cardName'); return false; }
-    return true;
-  }
-
-  function shake(id) {
-    const el = document.getElementById(id);
-    el.style.borderColor = '#dc2626';
-    el.focus();
-    el.animate([
-      {transform:'translateX(-4px)'},{transform:'translateX(4px)'},
-      {transform:'translateX(-3px)'},{transform:'translateX(3px)'},
-      {transform:'translateX(0)'}
-    ], {duration:300, easing:'ease-out'});
-    el.addEventListener('input', () => el.style.borderColor = '', {once:true});
-  }
-
-  function buildReview(targetId) {
-    const recurring = document.getElementById('recurringCheck').checked;
-    const isRecurring = (donationContext.freq !== 'onetime') || recurring;
-    const fn = document.getElementById('firstName').value.trim();
-    const ln = document.getElementById('lastName').value.trim();
-    const em = document.getElementById('email').value.trim();
-    const last4 = document.getElementById('cardNum').value.replace(/\s/g,'').slice(-4);
-    document.getElementById(targetId).innerHTML = `
-      <div class="summary-row"><span class="label">Donor</span><span class="value">${fn} ${ln}</span></div>
-      <div class="summary-row"><span class="label">Email</span><span class="value">${em}</span></div>
-      <div class="summary-row"><span class="label">Tier</span><span class="value">${donationContext.tier}</span></div>
-      <div class="summary-row"><span class="label">Amount</span><span class="value">${donationContext.amount}</span></div>
-      <div class="summary-row"><span class="label">Type</span><span class="value">${isRecurring ? 'Recurring (cancel anytime)' : 'One-time gift'}</span></div>
-      <div class="summary-row"><span class="label">Card</span><span class="value">···· ${last4}</span></div>
-    `;
-  }
-
-  function submitDonation() {
-    // ⬇️ REPLACE with your real payment processor call (Stripe, Donorbox, PayPal, etc.)
-    buildReview('confirmSummary');
-    goStep(4);
-  }
-
   function setFreq(id, btn) {
     document.querySelectorAll('.freq-panel').forEach(p => p.style.display = 'none');
     document.querySelectorAll('.freq-tab').forEach(t => t.classList.remove('active'));
     document.getElementById(id).style.display = 'block';
     btn.classList.add('active');
   }
-
   function selectAmount(btn, amt) {
     document.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     document.getElementById('customAmt').value = amt;
   }
-
   function openCustomMonthlyModal() {
     const inp = document.getElementById('monthlyCustomAmt');
     const amt = parseInt(inp.value, 10);
@@ -1187,11 +800,6 @@
     }
     // Stripe does not support prefilled_amount on recurring links — open directly
     window.open('https://buy.stripe.com/00geWZ66k0wX0M014r', '_blank');
-  }
-
-    function formatCard(el) {
-    let v = el.value.replace(/\D/g,'').substring(0,16);
-    el.value = v.replace(/(.{4})/g,'$1 ').trim();
   }
   function openCtaCustomModal() {
     const inp = document.getElementById('ctaCustomAmt');
@@ -1210,12 +818,6 @@
     // Pass amount in cents as prefilled_amount to Stripe
     const cents = amt * 100;
     window.open('https://buy.stripe.com/8wM7ux3Yca7x0M000m?prefilled_amount=' + cents, '_blank');
-  }
-
-    function formatExpiry(el) {
-    let v = el.value.replace(/\D/g,'').substring(0,4);
-    if (v.length >= 3) v = v.substring(0,2) + ' / ' + v.substring(2);
-    el.value = v;
   }
 </script>
 </body>
