@@ -76,10 +76,10 @@
     .progress-track { background: rgba(255,255,255,0.15); border-radius: 99px; height: 10px; overflow: hidden; }
     .progress-fill {
       background: linear-gradient(90deg, var(--gold), var(--gold-lt));
-      height: 100%; width: 80%; border-radius: 99px;
+      height: 100%; width: 91%; border-radius: 99px;
       animation: fillBar 1.4s ease-out forwards;
     }
-    @keyframes fillBar { from { width: 0 } to { width: 80% } }
+    @keyframes fillBar { from { width: 0 } to { width: 91% } }
     .progress-note { text-align: center; font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 8px; }
 
     /* ── CONTAINER ────────────────────────────────── */
@@ -392,7 +392,7 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .progress-fill { animation: none; width: 80%; }
+      .progress-fill { animation: none; width: 91%; }
       * { transition: none !important; animation: none !important; }
     }
 
@@ -438,8 +438,6 @@
 </script>
   <link rel="icon" type="image/png" href="nwclogo.png">
   <link rel="apple-touch-icon" href="nwclogo.png">
-<link rel="stylesheet" href="search.css">
-<script src="search.js" defer></script>
 </head>
 <body>
 <!-- ═══ NAV ═══ -->
@@ -449,7 +447,6 @@
       <img src="nwclogo.png" alt="Navy Wrestling Club logo"/>
       <span>Navy Wrestling<br>Club</span>
     </a>
-    <button class="nwc-search-btn" type="button" aria-label="Search this website" aria-haspopup="dialog"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/></svg></button>
     <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" onclick="var l=document.getElementById('nwcLinks'); var open=l.classList.toggle('open'); this.setAttribute('aria-expanded', open);">
       <svg viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
     </button>
@@ -473,11 +470,11 @@
   <p class="hero-sub">Your support sends Midshipmen to the mat — and beyond. Help us hit our $200,000 goal this season.</p>
   <div class="progress-wrap">
     <div class="progress-labels">
-      <span><strong>$160,980</strong> raised</span>
+      <span><strong>$181,284</strong> raised</span>
       <span>Goal: <strong>$200,000</strong></span>
     </div>
     <div class="progress-track"><div class="progress-fill"></div></div>
-    <p class="progress-note">80% of goal reached — join 180+ donors</p>
+    <p class="progress-note">91% of goal reached — join 180+ donors</p>
   </div>
 </section>
 
